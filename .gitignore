@@ -1,0 +1,16 @@
+# Ignore environment variable files
+.env
+
+# Node dependencies
+node_modules/
+
+# Build/output folders
+dist/
+build/
+
+# Log files
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
