@@ -1,0 +1,176 @@
+{{> header}}<style>
+  body {
+    background-color: #fff9f5;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  .article-hero {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #ffc0cb63; 
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+  .article-hero h1 {
+    font-size: 32px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .article-hero p {
+    font-size: 18px;
+    color: #555;
+  }
+
+  .article-container {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+
+  .article-block {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+    background-color:   rgba(116, 9, 109, 0.105);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: #ffc0cba5; 
+    transition: all 0.3s ease;
+  }
+
+  .article-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .article-block.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .article-img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  .article-text h2 {
+    margin-top: 0;
+    font-size: 22px;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .article-text p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .article-text a {
+    text-decoration: none;
+    color: #011710;
+    transition: all 0.3s ease;
+  }
+
+  .article-text a:hover {
+    color: #09175499;
+  }
+
+
+  .form button:hover {
+    background-color: #127a57;
+  }
+
+
+  @media (max-width: 768px) {
+    .article-block {
+      flex-direction: column;
+    }
+
+    .article-block.reverse {
+      flex-direction: column;
+    }
+
+    .article-img {
+      width: 100%;
+    }
+
+    .article-hero h1 {
+      font-size: 28px;
+    }
+
+    .article-hero p {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<section class="article-hero">
+  <h1>Discover the Stories Behind Our Handmade Textiles</h1>
+  <p>Every thread tells a story. Dive into the culture, history, and artistry of our traditional fabrics handcrafted by skilled artisans from Bhutan</p>
+</section>
+
+<section class="article-container">
+  <article class="article-block">
+    <img src="/productimage/A1.jpg" alt="Traditional Bhutanese Attire" class="article-img">
+    <div class="article-text">
+      <h2>
+        <a href="/A1" class="article-title-link">The Legacy of Bhutanese Weaving</a>
+      </h2>
+      <p>Bhutanese textiles are globally renowned for their complexity, vibrant colors, and spiritual significance. Traditionally woven by women using backstrap looms, each piece represents regional patterns and clan identity.</p>
+      <p>Our collection features patterns passed down for generations, woven in naturally dyed yarns and infused with personal symbolism. In rural communities, weaving is more than an art—it’s a form of storytelling.</p>
+    </div>
+  </article>
+
+  <article class="article-block reverse">
+    <img src="/productimage/A2.jpeg" alt="Gho and Kira" class="article-img">
+    <div class="article-text">
+      <h2>
+        <a href="/A1" class="article-title-link">Origins of Traditional Dress</a>
+      </h2>
+      <p>The history of Bhutanese textiles becomes more evident in the last century. As textile production moved beyond the confines of clothing to artistic expression of individuals and communities, patronage from the royal household was vital.</p>
+      <p>Although the founders of the Wangchuck dynasty are from Bumthang, their ancestral home is in Lhuntse District, which was historically recognised as the home of the most celebrated weavers in the country. The role and influence of royal women in sustaining and furthering the weaving tradition must be acknowledged.</p>
+    </div>
+  </article>
+
+  <article class="article-block">
+    <img src="/productimage/A3.jpg" alt="Trendy Textile" class="article-img">
+    <div class="article-text">
+      <h2>
+        <a href="/A3" class="article-title-link">Trendy Textile</a>
+      </h2>
+      <p>Most visitors who are traveling to Bhutan are aware of what to buy or have an idea
+         about the ordinary souvenirs like wood-carved masks, the traditional Mandala paintings,
+          the prayer flags or the handmade papers. But Bhutan offers more than just the ordinary 
+          souvenirs especially for those who love fashion and those who love to look a little more than 
+          the ordinary. </div>
+  </article>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const menuBtn = document.getElementById("menu-button");
+  const menuDropdown = document.getElementById("menu-dropdown");
+
+  menuBtn.addEventListener("click", () => {
+    menuDropdown.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+      menuDropdown.classList.add("hidden");
+    }
+  });
+</script>
+
+{{> footer}}

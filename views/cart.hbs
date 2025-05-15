@@ -1,0 +1,167 @@
+{{> header}}
+  
+  <style>
+    .cart-wrapper {
+      display: flex;
+      justify-content: center; /* Center horizontally */
+      padding: 40px 20px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 800px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      background-color: #f8f9fa;
+      padding: 16px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .card-body {
+      padding: 20px;
+      background-color: #fff;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #eee;
+    }
+
+    .btn-danger {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-danger:hover {
+      background-color: #c82333;
+    }
+
+    .text-end {
+      text-align: right;
+    }
+
+    .fw-bold {
+      font-weight: bold;
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .quantity-buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100px;
+    }
+
+    .quantity-buttons button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .quantity-buttons button:hover {
+      background-color: #0056b3;
+    }
+
+    .quantity-input {
+      text-align: center;
+      width: 40px;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+  </style>
+</head>
+<div class="cart-wrapper">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="mb-0">Shopping Cart</h4>
+    </div>
+    <div class="card-body">
+      <table class="table">
+        <thead class="table-light">
+          <tr>
+            <th>Item</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total Price</th>
+            <th>Remove</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#if cart.length}}
+            {{#each cart}}
+              <tr>
+                <td>{{name}}</td>
+                <td>
+                  <!-- Quantity Control -->
+                  <form action="/update_quantity" method="POST">
+                    <input type="hidden" name="product_id" value="{{id}}">
+                    <div class="quantity-buttons">
+                      <button type="submit" name="action" value="decrement">-</button>
+                      <input type="number" class="quantity-input" name="quantity" value="{{quantity}}" readonly>
+                      <button type="submit" name="action" value="increment">+</button>
+                    </div>
+                  </form>
+                  
+                </td>
+                <td>Nu {{price}}</td>
+                <td>Nu {{multiply price quantity}}</td>
+                <td>
+                  <form action="/cart/remove/{{id}}" method="POST" onsubmit="return confirm('Are you sure you want to remove this item?')">
+                    <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                  </form>
+                </td>
+              </tr>
+            {{/each}}
+            <tr>
+              <td colspan="3" class="text-end fw-bold">Total</td>
+              <td colspan="2" class="fw-bold">Nu {{calculateTotal cart}}</td>
+            </tr>
+          {{else}}
+            <tr>
+              <td colspan="5" class="text-center">Your cart is empty.</td>
+            </tr>
+          {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
+{{> footer}}
+<script>
+  const menuBtn = document.getElementById("menu-button");
+  const menuDropdown = document.getElementById("menu-dropdown");
+
+  menuBtn.addEventListener("click", () => {
+    menuDropdown.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+      menuDropdown.classList.add("hidden");
+    }
+  });
+</script>
+
+

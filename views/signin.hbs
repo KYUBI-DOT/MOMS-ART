@@ -1,0 +1,123 @@
+{{> header}}
+<style>
+  .form-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .form-toggle button {
+    background: none;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    color: black;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s, color 0.3s;
+  }
+
+  .separator {
+    width: 1px;
+    height: 30px;
+    background-color: #ccc;
+  }
+
+  </style>
+
+<div class="form-benefits-wrapper">
+  <!-- Form Side -->
+  <div class="container mt-5">
+    <div class="card p-4">
+      <div class="form-toggle">
+        <button id="show-login" class="btn btn-outline-primary">Login</button>
+        <div class="separator mx-3"></div>
+        <button id="show-register" class="btn btn-outline-secondary">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" method="POST" action="/auth/login">
+        <h3>Login</h3>
+        <div class="form-group">
+          <label for="login-email">Email</label>
+          <input type="email" class="form-control" id="login-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" class="form-control" id="login-password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-success mt-2">Login</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" method="POST" action="/auth/register" style="display: none;">
+        <h3>Register</h3>
+        <div class="form-group">
+          <label for="register-name">Name</label>
+          <input type="text" class="form-control" id="register-name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="register-email">Email</label>
+          <input type="email" class="form-control" id="register-email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="register-password">Password</label>
+          <input type="password" class="form-control" id="register-password" name="password" required>
+        </div>
+        <div class="form-group">
+          <label for="register-passwordConfirm">Confirm Password</label>
+          <input type="password" class="form-control" id="register-passwordConfirm" name="passwordConfirm" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-2">Register</button>
+      </form>
+
+      {{#if message}}
+        <div class="alert alert-danger mt-3">{{message}}</div>
+      {{/if}}
+    </div>
+  </div>
+
+  <!-- Benefits Side -->
+  <div class="benefits-container"> 
+  <h2>Mom's Art Member Benefits</h2>
+  <p>Enjoy the Member Perks</p>
+  <div>
+    <img id="benefit-img" src="/productimage/c1.gif" alt="Member Benefits Image" />
+  </div>
+    <button onclick="showNextImage()">Next</button>
+</div>
+
+</div>
+
+<script>
+  // Toggle forms
+  document.getElementById('show-login').addEventListener('click', function () {
+    document.getElementById('login-form').style.display = 'block';
+    document.getElementById('register-form').style.display = 'none';
+  });
+
+  document.getElementById('show-register').addEventListener('click', function () {
+    document.getElementById('login-form').style.display = 'none';
+    document.getElementById('register-form').style.display = 'block';
+  });
+
+  // Image changer
+  function changeImage(imgPath) {
+    document.getElementById('benefit-img').src = imgPath;
+  }
+  const images = [
+    '/productimage/c1.gif',
+    '/productimage/c2.gif',
+    '/productimage/c3.gif'
+  ];
+
+  let currentIndex = 0;
+
+  function showNextImage() {
+    currentIndex = (currentIndex + 1) % images.length; // Loop back to 0 at end
+    document.getElementById('benefit-img').src = images[currentIndex];
+  }
+</script>
+
+{{> footer}}

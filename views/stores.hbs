@@ -1,0 +1,201 @@
+{{> header}}
+
+<style>
+  body {
+    background-color: #fff3f7;
+  }
+
+  #hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+    gap: 40px;
+    flex-wrap: wrap;
+    background-color: #a10f4928;
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+  .hero-text-left {
+    flex: 1;
+    min-width: 280px;
+  }
+
+  .hero-text-left h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+  }
+
+  .hero-text-left p {
+    margin-top: 15px;
+    color: #333;
+  }
+
+  .hero-text-left button {
+    margin-top: 15px;
+    padding: 10px 18px;
+    background-color: #0c2860;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  .hero-text-left button a {
+    color: rgb(4, 2, 14);
+    text-decoration: none;
+  }
+
+  .hero-image {
+    flex: 1;
+    text-align: center;
+  }
+
+  .hero-image img {
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .hero-text-right {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    text-align: right;
+  }
+
+  #product {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  .pro-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+  }
+
+  .pro {
+    background: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: 0.3s ease-in-out;
+  }
+
+  .pro img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .des h5 {
+    margin: 10px 0 5px;
+    font-size: 16px;
+    color: #222;
+  }
+
+  .des p {
+    font-size: 14px;
+    color: #555;
+  }
+
+  #newsletter {
+    background-color: #ffeef2;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    margin: 40px 20px;
+  }
+
+  .form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+
+  .form input {
+    padding: 10px;
+    width: 240px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  .form button {
+    padding: 10px 18px;
+    background-color: #179b71;
+    border: none;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+</style>
+
+<section id="hero">
+  <div class="hero-text-left">
+    <h2>Visit Our Store</h2>
+    <h3>Mom’s Art – Phuntsholing, Bhutan</h3>
+    <p>Explore handcrafted textiles woven by passionate artisans in the heart of Bhutan. Our store brings tradition and creativity together in every thread.</p>
+    <button><a href="/shop">Shop Online</a> <i class="fa-solid fa-bag-shopping"></i></button>
+  </div>
+  <div class="hero-image">
+    <img src="/productimage/store.jpg" alt="Mom's Art Store Sample">
+    <div class="hero-text-right">
+      <p>Experience the colors, stories, and culture of Bhutan through every handmade piece.</p>
+    </div>
+  </div>
+</section>
+
+<section id="product">
+  <h2>Mom’s Art - Phuntsholing Store</h2>
+  <p>Located at 3 Sherab Lam, NPPF Colony, Phuntsholing</p>
+
+  <div class="pro-container">
+    <div class="pro">
+      <img src="/productimage/p3.png" alt="Bhutanese Textiles">
+      <div class="des">
+        <h5>Authentic Handwoven Fabrics</h5>
+        <p>Our products include traditional Kiras, Ghos, and modern reinterpretations of Bhutanese attire — all handmade by local women.</p>
+      </div>
+    </div>
+
+    <div class="pro">
+      <img src="/productimage/p7.png" alt="Local Products">
+      <div class="des">
+        <h5>Empowering Local Women</h5>
+        <p>Each textile supports women weavers and keeps Bhutan’s rich cultural heritage alive. When you shop with us, you're part of that story.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Bootstrap JS (should not contain custom code inside it) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Your custom script -->
+<script>
+  const menuBtn = document.getElementById("menu-button");
+  const menuDropdown = document.getElementById("menu-dropdown");
+
+  menuBtn.addEventListener("click", () => {
+    menuDropdown.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+      menuDropdown.classList.add("hidden");
+    }
+  });
+</script>
+
+
+
+{{> footer}}

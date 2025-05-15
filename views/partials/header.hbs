@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <title>Mom's Art</title>
+</head>
+<body>
+<div class="header">
+  <!-- Left: Logo and Menu -->
+  <div class="left-group">
+    <div class="logo-container">
+      <a href="/"><img src="/productimage/1.png" alt="Logo" class="logo" /></a>
+    </div>
+
+    <!-- Menu Icon -->
+    <div class="menu-wrapper">
+      <button id="menu-button" aria-label="Menu">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul id="menu-dropdown" class="hidden">
+        <li><a href="/register">Register</a></li>
+          <li><a href="/login">Login</a></li>
+        <li><a href="/articles">Articles</a></li>
+        <li><a href="/p1">Product Detail</a></li>
+        <li><a href="/admin-dashboard">Admin</a></li>
+        <li><a href="/logined">My Account   <i class="fa-sharp fa-solid fa-user"></i></a></li>
+      </ul>
+    
+    </div>
+  </div>
+
+  <!-- Right: Navigation Links -->
+  <nav id="navbar-container">
+    <ul id="navbar">
+      <li><a href="/">Home</a></li>
+      <li><a href="/shop">Shop</a></li>
+      <li><a href="/stores">Stores</a></li>
+      <li><a href="/signin">Sign In</a></li>
+      <li><a href="/cart"><i class="fa-solid fa-cart-shopping"></i></a></li>
+    </ul>
+  </nav>
+</div>
+</header>
+
+<script>
+  const menuBtn = document.getElementById("menu-button");
+  const menuDropdown = document.getElementById("menu-dropdown");
+
+  menuBtn.addEventListener("click", () => {
+    menuDropdown.classList.toggle("hidden");
+  });
+
+  document.addEventListener("click", (e) => {
+    if (!menuBtn.contains(e.target) && !menuDropdown.contains(e.target)) {
+      menuDropdown.classList.add("hidden");
+    }
+  });
+</script>
