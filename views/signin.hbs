@@ -1,4 +1,5 @@
 {{> header}}
+
 <style>
   .form-toggle {
     display: flex;
@@ -24,7 +25,24 @@
     background-color: #ccc;
   }
 
-  </style>
+  
+  /* New wrapper for image and arrows */
+  .image-wrapper {
+    position: relative;
+    max-width: 320px; /* adjust to your image width */
+    margin: 0 auto 2rem auto;
+    overflow: visible; /* show arrows outside if needed */
+  }
+
+  #benefit-img {
+    width: 100%;
+    border-radius: 8px;
+    display: block;
+  }
+  .benefits-container {
+    text-align: center;
+  }
+</style>
 
 <div class="form-benefits-wrapper">
   <!-- Form Side -->
@@ -80,14 +98,21 @@
 
   <!-- Benefits Side -->
   <div class="benefits-container"> 
-  <h2>Mom's Art Member Benefits</h2>
-  <p>Enjoy the Member Perks</p>
-  <div>
-    <img id="benefit-img" src="/productimage/c1.gif" alt="Member Benefits Image" />
-  </div>
-    <button onclick="showNextImage()">Next</button>
-</div>
+    <h2>Mom's Art Member Benefits</h2>
+    <p>Enjoy the Member Perks</p>
 
+    <div class="image-wrapper">
+      <img id="benefit-img" src="/productimage/c1.gif" alt="Member Benefits Image" />
+
+      <button class="arrow-btn left-arrow" onclick="showPrevImage()">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+
+      <button class="arrow-btn right-arrow" onclick="showNextImage()">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -103,19 +128,21 @@
   });
 
   // Image changer
-  function changeImage(imgPath) {
-    document.getElementById('benefit-img').src = imgPath;
-  }
   const images = [
     '/productimage/c1.gif',
-    '/productimage/c2.gif',
-    '/productimage/c3.gif'
+    '/productimage/c3.gif',
+    '/productimage/c2.gif'
   ];
 
   let currentIndex = 0;
 
   function showNextImage() {
-    currentIndex = (currentIndex + 1) % images.length; // Loop back to 0 at end
+    currentIndex = (currentIndex + 1) % images.length;
+    document.getElementById('benefit-img').src = images[currentIndex];
+  }
+
+  function showPrevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
     document.getElementById('benefit-img').src = images[currentIndex];
   }
 </script>

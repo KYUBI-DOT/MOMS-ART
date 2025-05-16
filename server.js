@@ -149,7 +149,42 @@ app.get('/search', (req, res) => {
   const query = req.query.q;
   res.send(`Search results for: ${query}`);
 });
+app.get('/shop', async (req, res) => {
+  const page = parseInt(req.query.page) || 1;
+  const limit = 8;
+  const skip = (page - 1) * limit;
 
+  const products = await Product.find().skip(skip).limit(limit);
+  res.render("shop", {
+  products,
+  shopsort: req.query.shopsort,
+  category: req.query.category
+});
+
+});// Register all helpers here before routes or app.listen
+hbs.registerHelper('eq', (a, b) => a == b);
+hbs.registerHelper('gt', (a, b) => a > b);
+hbs.registerHelper('lt', (a, b) => a < b);
+hbs.registerHelper('increment', value => value + 1);
+hbs.registerHelper('decrement', value => value - 1);
+hbs.registerHelper("unless", (value, options) => !value ? options.fn(this) : options.inverse(this));
+hbs.registerHelper("ifEquals", function (arg1, arg2, options) {
+  return arg1 === arg2 ? options.fn(this) : options.inverse(this);
+});
+hbs.registerHelper("range", function (start, end) {
+  let range = [];
+  for (let i = start; i <= end; i++) {
+    range.push(i);
+  }
+  return range;
+});
+hbs.registerHelper('calculateWeekly', function(price) {
+  return (price / 10).toFixed(2);
+});
+
+hbs.registerHelper('calculateAfterpay', function(price) {
+  return (price / 4).toFixed(2);
+});
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

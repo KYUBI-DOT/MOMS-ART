@@ -4,6 +4,7 @@ const db = require("../db");
 const router = express.Router();
 const { ensureAdmin } = require('../middleware/auth');
 
+
 // User Routes 
 
 // Home Page
@@ -45,21 +46,81 @@ router.get('/p1', (req, res) => res.render('p1'));
 router.get('/A1', (req, res) => res.render('A1'));
 router.get('/A2', (req, res) => res.render('A2'));
 router.get('/A3', (req, res) => res.render('A3'));
-
-
-// ---------- Product Browsing (Shop) ---------- //
-
-// View All Products
 router.get('/shop', (req, res) => {
-  db.query('SELECT * FROM products', (err, products) => {
+  const page = parseInt(req.query.page) || 1;
+  const productsPerPage = 8;
+  const offset = (page - 1) * productsPerPage;
+
+  const { shopsort, category } = req.query;
+
+  let baseQuery = "FROM products";
+  let whereClause = "";
+  let orderClause = "";
+  const params = [];
+
+  // Category filter
+  if (category) {
+    whereClause = " WHERE category = ?";
+    params.push(category);
+  }
+
+  // Sorting
+  if (shopsort === "newest") {
+    orderClause = " ORDER BY date_uploaded DESC";
+  } else if (shopsort === "oldest") {
+    orderClause = " ORDER BY date_uploaded ASC";
+  } else if (shopsort === "recommended") {
+    orderClause = " ORDER BY rating DESC";
+  }
+
+  // Count query (to calculate total pages)
+  const countQuery = `SELECT COUNT(*) AS count ${baseQuery} ${whereClause}`;
+
+  db.query(countQuery, params, (err, countResult) => {
     if (err) {
-      console.error("❌ DB Error:", err);
-      return res.status(500).send("Error loading shop");
+      console.error("❌ Count error:", err);
+      return res.status(500).send("Database error.");
     }
-    res.render('shop', { products });
+
+    const totalProducts = countResult[0].count;
+    const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+    // Pagination + sorting
+    const paginatedQuery = `SELECT * ${baseQuery} ${whereClause} ${orderClause} LIMIT ? OFFSET ?`;
+    const productParams = [...params, productsPerPage, offset];
+
+    db.query(paginatedQuery, productParams, (err, products) => {
+      if (err) {
+        console.error("❌ Product query error:", err);
+        return res.status(500).send("Error loading products.");
+      }
+
+      res.render('shop', {
+        products,
+        currentPage: page,
+        totalPages,
+        shopsort,
+        category
+      });
+    });
   });
 });
+router.get('/product/:id', (req, res) => {
+  const productId = req.params.id;
+  const query = "SELECT * FROM products WHERE id = ?";
+  db.query(query, [productId], (err, results) => {
+    if (err) {
+      console.error("❌ Product detail query error:", err);
+      return res.status(500).send("Database error.");
+    }
+    if (results.length === 0) {
+      return res.status(404).send("Product not found.");
+    }
+    const product = results[0];
 
+    res.render('product-detail', { product });
+  });
+});
 
 // ---------- Shopping Cart Functionality ---------- //
 

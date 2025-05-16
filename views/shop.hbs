@@ -20,67 +20,6 @@
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Form Styling */
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-/* Form Group (Label + Input) */
-.form-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-}
-
-/* Label Styling */
-label {
-    width: 120px; /* Adjust as needed */
-    font-weight: bold;
-    text-align: right;
-    margin-right: 10px;
-    font-size: 14px;
-    color: #333;
-}
-
-/* Input Fields (Ensuring all have the same styling) */
-input[type="text"], input[type="email"], input[type="password"] {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-    background: #f9f9f9;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: 0.3s;
-}
-
-/* Focus Styles */
-input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus {
-    background-color: #ffffff;
-    border: 1px solid #179b71;
-    box-shadow: 0px 0px 5px rgba(23, 155, 113, 0.5);
-    outline: none;
-}
-
-/* Submit Button */
-.container button {
-    background-color: #179b71;
-    color: white;
-    padding: 12px;
-    margin-top: 10px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.container button:hover {
-    background-color: #127a57;
-}
-
 /* Card Styling */
 .card {
     border-radius: 8px;
@@ -96,76 +35,6 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
-}
-#hero {
-    display: flex;
-    justify-content: center; /* Center content */
-    align-items: center;
-    height: 70vh; /* Full hero height */
-    padding: 0 50px; /* Spacing from edges */
-    gap: 40px; /* Space between text and image */
-    background-color: #ffc0cb9c; /* Soft pink background */
-    border-radius: 10px; /* Rounded corners */
-    margin-left: 40px;
-    margin-right: 40px;
-    margin-bottom: 120px;
-}
-
-.hero-text-left {
-    max-width: 30%; /* Prevent text from stretching */
-    color: black;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}.hero-text-right {
-    max-width: 30%; /* Prevent text from stretching */
-    color: black;
-    text-align: left;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.hero-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-}
-
-.hero-image img {
-    max-width: 90%; /* Adjust image size */
-    height: auto;
-    border-radius: 10px;
-}
-
-#hero h4 {
-    padding-bottom: 15px;
-}
-
-#hero h1 {
-    color: rgba(15, 1, 13, 0.63);
-}
-
-/* Button Styling in Hero Section */
-#hero button {
-    background-color: #c3189e1d; /* Background color */
-    color: rgb(12, 3, 3); /* Text color */
-    padding: 10px 20px; /* Padding inside the button */
-    border: none; /* Remove button border */
-    border-radius: 5px; /* Rounded corners */
-    font-size: 16px; /* Font size */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth background color change on hover */
-}
-
-#hero button:hover {
-    background-color: #4818c318; /* Darken background on hover */
-}
-
-#product{
-    text-align: center;
-
 }
 .pro .des {
     padding: 10px 0;
@@ -200,6 +69,9 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     justify-content: center;
     max-width: 900px; 
     margin: auto;
+}
+.pro.hidden {
+  display: none; /* hide inactive items */
 }
 
 .pro {
@@ -290,7 +162,7 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     gap: 1px; 
     justify-content: center;
     align-items: center;
-    margin-top: 4px; 
+    margin-top: 1px; 
 }
 
 select, button {
@@ -298,65 +170,122 @@ select, button {
     font-size: 14px;  
 }
 
-  </style>
+#products {
+  background-image: url('/productimage/sky1.JPG');
+  background-size: cover;       /* Cover the entire area */
+  background-position: center;  /* Center the image */
+  background-repeat: no-repeat; /* Don't repeat the image */
+  max-width: 1300px;
+  margin: 60px auto;
+  color: black;                 /* Text color for contrast */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Optional shadow for better readability */
+}
+.shop-buttons {
+  display: flex;
+  justify-content: flex-end;   /* Center horizontally */
+  align-items: center;
+  gap: 20px;                 /* Space between buttons */
+  margin-top: 40px;
+  margin-bottom: 60px;       /* Space above footer */
+    width: 100%
+}
 
-</head>
+.arrow-btn {
+  background-color: #0bb3b9;
+  color: white;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.arrow-btn:hover {
+  background-color: #088a8e;
+}
+  </style>
+<body>
 <section id="products">
   <h2 style="text-align: center;">Shop Our Products</h2>
-  
 
-<section id="topshop">
+  <section id="topshop">
     <div class="topshoptext">
-      <form class="store container">
+      <form class="store container" method="GET" action="/shop">
         <div class="select-container">
-            <select name="shopsort">
-                <option value="newest">Newest</option>
-                <option value="oldest">Oldest</option>
-                <option value="recommended">Recommended</option>
-            </select>
+          <select name="shopsort">
+            <option value="" {{#unless shopsort}}selected{{/unless}}>Sort By</option>
+            <option value="newest" {{#if (eq shopsort "newest")}}selected{{/if}}>Latest</option>
+            <option value="oldest" {{#if (eq shopsort "oldest")}}selected{{/if}}>Trendy</option>
+            <option value="recommended" {{#if (eq shopsort "recommended")}}selected{{/if}}>Recommended</option>
+          </select>
 
-            <select name="category" class="category-dropdown">
-                <option value="" disabled selected>Categories</option>
-                <option value="clothes">Clothes</option>
-                <option value="home-decor">Home Decor</option>
-                <option value="accessories">Accessories</option>
-            </select>
-            <button>Sort</button>
+          <select name="category" class="category-dropdown">
+            <option value="" {{#unless category}}selected{{/unless}}>All Categories</option>
+            <option value="Men" {{#if (eq category "Men")}}selected{{/if}}>Men</option>
+            <option value="Women" {{#if (eq category "Women")}}selected{{/if}}>Women</option>
+            <option value="Accessories" {{#if (eq category "Accessories")}}selected{{/if}}>Accessories</option>
+          </select>
+
+          <button type="submit">Filter</button>
         </div>
-    </form>
-</section>
-  <div class="pro-container">
-    {{#each products}}
-      <div class="pro">
-        <!-- Corrected image path -->
-        <img src="{{image}}" alt="{{name}}">
-        <div class="des">
-          <strong><h5>{{name}}</h5>
-          <p>Nu {{price}}</p>
-          <p>{{category}}</p>
-          </strong>
-          <form action="/cart/add/{{id}}" method="POST" class="product-form">            
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button></form>
-        </div>
-      </div>
-    {{/each}}
-  </div>
-   <button type="next">Next Page</button>
-  
-  <section id="newsletter">
-    <div class="newstext">
-      <h4>Join Our Newsletter!</h4>
-      <p>Get E-mail about our latest products and special offers</p>
-    </div>
-    <div class="form">
-      <form>
-        <input type="email" placeholder="Your Email Address" required />
-        <button type="submit">Sign Up</button>
       </form>
     </div>
   </section>
+
+  <div class="pro-container">
+  {{#each products}}
+    <div class="pro">
+      <!-- Wrap the image with a link to the product detail page -->
+      <a href="/product/{{id}}">
+        <img src="{{image}}" alt="{{name}}" />
+      </a>
+      <div class="des">
+        <h5><a href="/product/{{id}}">{{name}}</a></h5>
+        <p>Nu {{price}}</p>
+        <p>{{category}}</p>
+        <p>Rating: {{rating}}</p>
+        <form action="/cart/add/{{id}}" method="POST" class="product-form">
+          <button type="submit" class="cart-link">
+            <i class="fa-solid fa-cart-shopping cart"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+  <div class="shop-buttons">
+    {{#if (gt currentPage 1)}}
+      <button class="arrow-btn left-arrow" onclick="location.href='?page={{decrement currentPage}}&shopsort={{shopsort}}&category={{category}}'">
+        <i class="fa-solid fa-arrow-left"></i>
+      </button>
+    {{/if}}
+
+    {{#each (range 1 totalPages)}}
+      <button class="arrow-btn {{#if (eq ../currentPage this)}}active{{/if}}" onclick="location.href='?page={{this}}&shopsort={{../shopsort}}&category={{../category}}'">
+        {{this}}
+      </button>
+    {{/each}}
+
+    {{#if (lt currentPage totalPages)}}
+      <button class="arrow-btn right-arrow" onclick="location.href='?page={{increment currentPage}}&shopsort={{shopsort}}&category={{category}}'">
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    {{/if}}
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="newstext">
+    <h4>Join Our Newsletter!</h4>
+    <p>Get E-mail about our latest products and special offers</p>
+  </div>
+  <div class="form">
+    <input type="text" placeholder="Your Email Address" />
+    <button>Sign Up</button>
+  </div>
 </section>
 
 <!-- Bootstrap JS -->
@@ -378,6 +307,7 @@ select, button {
       }
     });
   }
-
 </script>
+</body>
+</html>
 {{> footer}}

@@ -1,0 +1,283 @@
+{{> header}}
+
+<style>/* Global Styles */
+body {
+  padding-top: 100px;
+}
+
+
+/* Product Cards */
+.pro-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  justify-content: center;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+}
+
+.pro {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(2px);
+  transition: 0.3s ease-in-out;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.pro:hover {
+  box-shadow: 20px 20px 30px rgba(9, 29, 130, 0.452);
+}
+
+.pro img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pro .des {
+  padding-top: 7px;
+  font-size: 15px;
+  text-align: start;
+}
+
+.pro .des h5 {
+  padding-top: 7px;
+  color: rgba(0, 0, 0, 0.813);
+  font-size: 14px;
+}
+
+.pro .des a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.pro .des a:hover {
+  text-decoration: underline;
+}
+
+/* Product Detail Page */
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.product-image img {
+  width: 350px;
+  height: 450px;
+  object-fit: cover;
+}
+
+.product-info {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.product-info h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-info .price {
+  font-size: 20px;
+  color: #961f1f;
+  margin-top: 10px;
+}
+
+.product-actions {
+  margin-top: 20px;
+}
+
+.product-actions label {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.product-actions select,
+.product-actions input {
+  margin-top: 5px;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.product-actions button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1399d204;
+  color: rgba(19, 88, 190, 0.868);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.product-actions button:hover {
+  background-color: #0fa9d41c;
+}
+
+.payment-options {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.tags {
+  margin-top: 20px;
+}
+
+.tag {
+  display: inline-block;
+  background-color: #ff6347;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.tag:hover {
+  background-color: #e5533e;
+}
+
+/* Footer */
+.site-footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #1584c945;
+  align-items: center;
+}
+
+.site-footer .column {
+  flex: 1;
+  min-width: 200px;
+  margin: 10px;
+}
+
+.site-footer .column h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.site-footer .column a {
+  display: block;
+  color: #100000f8;
+  text-decoration: none;
+  margin-bottom: 5px;
+  transition: color 0.3s;
+}
+
+.site-footer .column a:hover {
+  color: #150982dc;
+  text-decoration: underline;
+}
+
+.site-footer .icon i {
+  font-size: 20px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.copyright {
+  text-align: center;
+  width: 100%;
+  font-size: 14px;
+  color: #666;
+}
+
+</style>
+
+<div class="pro-container">
+  {{#each products}}
+    <div class="pro">
+      <a href="/product/{{id}}">
+        <img src="{{image}}" alt="{{name}}" />
+      </a>
+      <div class="des">
+        <h5><a href="/product/{{id}}">{{name}}</a></h5>
+        <p>Nu {{price}}</p>
+        <p>{{category}}</p>
+        <p>Rating: {{rating}}</p>
+        <form action="/cart/add/{{id}}" method="POST" class="product-form">
+          <label for="quantity-{{id}}">Quantity:</label>
+          <input type="number" id="quantity-{{id}}" name="quantity" min="1" value="1" required>
+          <button type="submit" class="cart-link">
+            <i class="fa-solid fa-cart-shopping cart"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+<section class="product-detail">
+  <div class="product-image">
+    <img src="{{product.image}}" alt="{{product.name}}">
+  </div>
+
+  <div class="product-info">
+    <h1>{{product.name}}</h1>
+    <p class="price">Nu {{product.price}}</p>
+    <p><strong>Rating:</strong> {{product.rating}}</p>
+    <p><strong>Category:</strong> {{product.category}}</p>
+    
+    <div class="product-actions">
+      <label for="size">Size:</label>
+      <select id="size" name="size">
+        <option>XS</option>
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+      </select>
+
+      <form action="/cart/add/{{product.id}}" method="POST" class="product-form">
+<button type="submit" class="cart-link">
+          <i class="fa-solid fa-cart-shopping cart"></i>
+        </button>
+      </form>
+    </div>
+
+    <div class="payment-options">
+      <p><strong>ZipPay:</strong> from Nu {{calculateWeekly product.price}}</p>
+      <p><strong>Afterpay:</strong> 4 payments of Nu {{calculateAfterpay product.price}}</p>
+    </div>
+
+    <div class="tags">
+      <p class="tag">SALE</p>
+      <p class="tag">Trending!</p>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="newstext">
+    <h4>Join Our Newsletter!</h4>
+    <p>Get E-mail about our latest products and special offers</p>
+  </div>
+  <div class="form">
+    <input type="text" placeholder="Your Email Address" />
+    <button>Sign Up</button>
+  </div>
+</section>
+
+
+{{> footer}}
