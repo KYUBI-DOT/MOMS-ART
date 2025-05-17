@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
-  <title>Mom's Art</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Mom's Art</title>
 </head>
 <body>
 <div class="header">
@@ -30,17 +30,17 @@
       </ul>
     </div>
   </div>
-      <!-- Center: Logo and Search -->
-   <div class="center-group">
-  <div class="search-form">
-    <form action="/search" method="GET">
-      <input type="text" name="q" placeholder="Search..." required />
-      <button type="submit">
-        <i class="fa fa-search"></i> <!-- Magnifying glass icon -->
-      </button>
-    </form>
-  </div>
-</div>
+<form action="/search" method="GET" class="search-form">
+  <input type="text" name="q" placeholder="Search..." class="search-input" />
+  <button type="submit" class="search-button">
+    <i class="fas fa-search"></i>
+  </button>
+</form>
+
+
+
+
+
 
 
 
@@ -66,25 +66,24 @@
 </div>
 </section>
 <div class="place-card"> 
-  <section id="hero">
+  <section id="hero-index">
     <!-- Left section for Women -->
-    <div class="hero-text-left">
-      <h2>All Handmade Textiles</h2>
+    <div class="hero-index-text-left">
+      <h2>Handmade Textiles</h2>
       <p>Styling For Him and Her</p>
       <p>Fashionable and Trendy Wears</p>
-      <button>
+      <button class="hero-index-button-link">
         <a href="/shop?category=Women">WOMEN</a>
         <i class="fa-solid fa-bag-shopping"></i>
       </button>
     </div>
 
-   <div class="hero-image">
+   <div class="hero-index-image">
     <img src="/productimage/wm.png" alt="Model Image" />
   </div>
-
-  <div class="hero-text-right">
+  <div class="hero-index-text-right">
     <p>New SPRING SUMMER 2025 Collection Available</p>
-    <button><a href="/shop?category=Men">MEN</a> <i class="fa-solid fa-bag-shopping"></i></button>
+    <button class="hero-index-button-link"><a href="/shop?category=Men">MEN</a> <i class="fa-solid fa-bag-shopping"></i></button>
   </div>
 </section>
 

@@ -63,15 +63,19 @@ router.get('/shop', (req, res) => {
     whereClause = " WHERE category = ?";
     params.push(category);
   }
-
-  // Sorting
+  // Sorting logic
   if (shopsort === "newest") {
     orderClause = " ORDER BY date_uploaded DESC";
   } else if (shopsort === "oldest") {
     orderClause = " ORDER BY date_uploaded ASC";
   } else if (shopsort === "recommended") {
     orderClause = " ORDER BY rating DESC";
+  } else if (shopsort === "ascending") {
+    orderClause = " ORDER BY price ASC";
+  } else if (shopsort === "descending") {
+    orderClause = " ORDER BY price DESC";
   }
+
 
   // Count query (to calculate total pages)
   const countQuery = `SELECT COUNT(*) AS count ${baseQuery} ${whereClause}`;
@@ -168,9 +172,7 @@ router.post('/cart/remove/:id', (req, res) => {
 
   req.session.cart = req.session.cart.filter(item => item.id != productId);
   res.redirect('/cart');
-});
-
-/* Checkout and Clear Cart
+})/* Checkout and Clear Cart
 router.post('/cart/checkout', (req, res) => {
   if (!req.session.cart || req.session.cart.length === 0) {
     return res.redirect('/cart');

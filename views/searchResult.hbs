@@ -1,0 +1,218 @@
+{{>header}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Search Results for "{{query}}"</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f7fa;
+      margin: 0;
+      padding: 50px;
+    }
+
+    .search-title {
+      text-align: center;
+      margin: 30px 0;
+      color: #333;
+    }
+
+    .search-product-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 0 20px 40px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .search-product-card {
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 250px;
+      padding: 15px;
+      transition: transform 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .search-product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .search-product-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 10px;
+    }
+
+    .search-product-card h2 {
+      font-size: 18px;
+      margin: 5px 0;
+      color: #222;
+    }
+
+    .search-product-card p {
+      margin: 4px 0;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+    }
+
+    .search-product-card form {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .search-product-card button {
+      background-color: #0b8cbd;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+
+    .search-product-card button:hover {
+      background-color: #096999;
+    }
+
+    .search-back-link {
+      display: block;
+      text-align: center;
+      margin: 20px;
+      color: #0b8cbd;
+      text-decoration: none;
+    }
+
+    .search-back-link:hover {
+      text-decoration: underline;
+    }
+
+    #search-topshop {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 1px;
+    }
+
+    .search-topshoptext h4 {
+      margin-bottom: 0.2px;
+    }
+
+    .search-select-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1px;
+      justify-content: center;
+      align-items: center;
+      margin-top: 1px;
+    }
+
+    .search-select-container select,
+    .search-select-container button {
+      padding: 2px 6px;
+      font-size: 14px;
+    }
+
+    #search-products-banner {
+      background-image: url('/productimage/sky1.JPG');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      max-width: 1300px;
+      margin: 60px auto;
+      color: black;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .search-shop-buttons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 20px;
+      margin-top: 40px;
+      margin-bottom: 60px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="search-title">Search Results for "{{query}}"</h1>
+
+  <section id="search-topshop">
+    <div class="search-topshoptext">
+      <form class="search-filter-form" method="GET" action="/searchResults">
+        <input type="hidden" name="q" value="{{query}}">
+        <div class="search-select-container">
+          <select name="shopsort">
+            <option value="newest" {{#if (eq shopsort "newest")}}selected{{/if}}>Latest</option>
+            <option value="oldest" {{#if (eq shopsort "oldest")}}selected{{/if}}>Trendy</option>
+            <option value="ascending" {{#if (eq shopsort "ascending")}}selected{{/if}}>Low to High</option>
+            <option value="descending" {{#if (eq shopsort "descending")}}selected{{/if}}>High to Low</option>
+            <option value="recommended" {{#if (eq shopsort "recommended")}}selected{{/if}}>Recommended</option>
+          </select>
+
+          <select name="category" class="search-category-dropdown">
+            <option value="" {{#unless category}}selected{{/unless}}>All Categories</option>
+            <option value="Men" {{#if (eq category "Men")}}selected{{/if}}>Men</option>
+            <option value="Women" {{#if (eq category "Women")}}selected{{/if}}>Women</option>
+            <option value="Accessories" {{#if (eq category "Accessories")}}selected{{/if}}>Accessories</option>
+          </select>
+
+          <button type="submit">Filter</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  {{#if products.length}}
+    <div class="search-product-list">
+      {{#each products}}
+        <div class="search-product-card">
+          <img src="{{image}}" alt="{{name}}" class="search-product-image">
+
+          <h2>{{name}}</h2>
+          <p>{{description}}</p>
+          <p><strong>Price:</strong> Nu{{price}}</p>
+          <p><strong>Rating:</strong> {{rating}}</p>
+          <p><strong>Category:</strong> {{category}}</p>
+
+          <form method="POST" action="/add_cart">
+            <input type="hidden" name="product_id" value="{{id}}">
+            <input type="hidden" name="product_name" value="{{name}}">
+            <input type="hidden" name="product_price" value="{{price}}">
+            <input type="hidden" name="product_rating" value="{{rating}}">
+            <input type="hidden" name="product_image" value="{{image}}">
+            <input type="hidden" name="category" value="{{category}}">
+            <button type="submit">Add to Cart</button>
+          </form>
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <p style="text-align: center;">No results found for "{{query}}".</p>
+  {{/if}}
+
+  <a href="/" class="search-back-link">← Back to Home</a>
+
+</body>
+</html>
+
+{{>footer}}

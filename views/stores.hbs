@@ -1,192 +1,247 @@
 {{> header}}
-
 <style>
-  body {
-    background-color: #fff3f7;
-  }
-  #map iframe {
-  width: 100%;
-  max-width: 600px;
-  height: 450px;
-  border-radius: 10px;
-}
+/* Hero Store Section */
+    .hero-store {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      padding: 40px 20px;
+      max-width: 1100px;
+      margin: 0 auto 80px;
+      background: #fafafa;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    }
 
+    .hero-text-left,
+    .hero-text-right {
+      flex: 1;
+      max-width: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      color: #333;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
 
-  #hero {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 60px 40px;
-    gap: 40px;
-    flex-wrap: wrap;
-    background-color: #a10f4928;
-    border-radius: 10px;
-    margin: 20px;
-  }
+    .hero-text-left h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
 
-  .hero-text-left {
-    flex: 1;
-    min-width: 280px;
-  }
+    .hero-text-left h3 {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      font-weight: 600;
+      color: #555;
+    }
 
-  .hero-text-left h2 {
-    font-size: 30px;
-    margin-bottom: 10px;
-  }
+    .hero-text-left p,
+    .hero-text-right p {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      font-weight: 400;
+    }
 
-  .hero-text-left p {
-    margin-top: 15px;
-    color: #333;
-  }
+    .hero-text-left button {
+      width: max-content;
+      padding: 10px 20px;
+      background-color: #179b71;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 1.1rem;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
 
-  .hero-text-left button {
-    margin-top: 15px;
-    padding: 10px 18px;
-    background-color: #0c2860;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-  }
+    .hero-text-left button:hover {
+      background-color: #126d5a;
+    }
 
-  .hero-text-left button a {
-    color: rgb(4, 2, 14);
-    text-decoration: none;
-  }
+    .hero-text-left button a {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-  .hero-image {
-    flex: 1;
-    text-align: center;
-  }
+    .hero-image {
+      flex: 1;
+      max-width: 350px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .hero-image img {
-    max-width: 500px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  }
+    .hero-image img {
+      width: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+      box-shadow: 0 4px 15px rgb(0 0 0 / 0.15);
+    }
 
-  .hero-text-right {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
-    text-align: right;
-  }
+    /* Product Section */
+    #product {
+      max-width: 1000px;
+      margin: auto 20px 80px;
+      padding: 0 10px;
+    }
 
-  #product {
-    text-align: center;
-    padding: 40px 20px;
-  }
+    #product h2 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 5px;
+    }
 
-  .pro-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding: 20px;
-  }
+    #product p {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #666;
+      margin-bottom: 30px;
+    }
 
-  .pro {
-    background: #fff;
-    border-radius: 10px;
-    padding: 15px;
-    width: 250px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: 0.3s ease-in-out;
-  }
+    .pro-container {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
 
-  .pro img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
+    .pro {
+      flex: 1 1 400px;
+      max-width: 400px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
 
-  .des h5 {
-    margin: 10px 0 5px;
-    font-size: 16px;
-    color: #222;
-  }
+    .pro:hover {
+      transform: translateY(-8px);
+    }
 
-  .des p {
-    font-size: 14px;
-    color: #555;
-  }
+    .pro img {
+      width: 100%;
+      border-radius: 10px 10px 0 0;
+      object-fit: cover;
+      height: 250px;
+    }
 
-  #newsletter {
-    background-color: #ffeef2;
-    padding: 40px 20px;
-    text-align: center;
-    border-radius: 10px;
-    margin: 40px 20px;
-  }
+    .des {
+      padding: 15px 20px;
+      flex-grow: 1;
+    }
 
-  .form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-top: 20px;
-    flex-wrap: wrap;
-  }
+    .des h5 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
 
-  .form input {
-    padding: 10px;
-    width: 240px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+    .des p {
+      font-size: 1rem;
+      color: #444;
+      line-height: 1.4;
+    }
 
-  .form button {
-    padding: 10px 18px;
-    background-color: #179b71;
-    border: none;
-    color: white;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
+    /* Map Section */
+    #map {
+      text-align: center;
+      margin: 40px 20px 80px;
+    }
 
-<section id="hero">
+    #map h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    #map iframe {
+      border: 0;
+      border-radius: 10px;
+      max-width: 600px;
+      width: 100%;
+      height: 450px;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .hero-store {
+        flex-direction: column;
+      }
+
+      .hero-text-left,
+      .hero-text-right,
+      .hero-image {
+        max-width: 100%;
+      }
+    }
+  </style>
+<section class="hero-store">
   <div class="hero-text-left">
     <h2>Visit Our Store</h2>
     <h3>Mom’s Art – Phuntsholing, Bhutan</h3>
-    <p>Explore handcrafted textiles woven by passionate artisans in the heart of Bhutan. Our store brings tradition and creativity together in every thread.</p>
-    <button><a href="/shop">Shop Online</a> <i class="fa-solid fa-bag-shopping"></i></button>
+    <p>
+      Explore handcrafted textiles woven by passionate artisans in the heart of Bhutan. Our store brings tradition and creativity together in every thread.
+    </p>
+    <button>
+      <a href="/shop" style="text-decoration:none; color:inherit;">Shop Online <i class="fa-solid fa-bag-shopping"></i></a>
+    </button>
   </div>
+
   <div class="hero-image">
-    <img src="/productimage/store.jpg" alt="Mom's Art Store Sample">
-    <div class="hero-text-right">
-      <p>Experience the colors, stories, and culture of Bhutan through every handmade piece.</p>
-    </div>
+    <img src="/productimage/store.jpg" alt="Mom's Art Store Sample" />
+  </div>
+
+  <div class="hero-text-right">
+    <p>
+      Experience the colors, stories, and culture of Bhutan through every handmade piece.
+    </p>
   </div>
 </section>
 
-<section id="product">
+<section id="product" style="max-width: 1000px; margin: auto;">
   <h2>Mom’s Art - Phuntsholing Store</h2>
   <p>Located at 3 Sherab Lam, NPPF Colony, Phuntsholing</p>
 
-  <div class="pro-container">
-    <div class="pro">
-      <img src="/productimage/p3.png" alt="Bhutanese Textiles">
-      <div class="des">
+  <div class="pro-container" style="display: flex; gap: 20px; justify-content: center; margin-top: 30px;">
+    <div class="pro" style="flex: 1; max-width: 400px;">
+      <img src="/productimage/p3.png" alt="Bhutanese Textiles" style="width: 100%; border-radius: 10px;" />
+      <div class="des" style="padding: 10px 0;">
         <h5>Authentic Handwoven Fabrics</h5>
-        <p>Our products include traditional Kiras, Ghos, and modern reinterpretations of Bhutanese attire — all handmade by local women.</p>
+        <p>
+          Our products include traditional Kiras, Ghos, and modern reinterpretations of Bhutanese attire — all handmade by local women.
+        </p>
       </div>
     </div>
 
-    <div class="pro">
-      <img src="/productimage/p7.png" alt="Local Products">
-      <div class="des">
+    <div class="pro" style="flex: 1; max-width: 400px;">
+      <img src="/productimage/p7.png" alt="Local Products" style="width: 100%; border-radius: 10px;" />
+      <div class="des" style="padding: 10px 0;">
         <h5>Empowering Local Women</h5>
-        <p>Each textile supports women weavers and keeps Bhutan’s rich cultural heritage alive. When you shop with us, you're part of that story.</p>
+        <p>
+          Each textile supports women weavers and keeps Bhutan’s rich cultural heritage alive. When you shop with us, you're part of that story.
+        </p>
       </div>
     </div>
   </div>
 </section>
+
 <section id="map" style="text-align: center; margin: 40px 20px;">
   <h2>Find Us Here</h2>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2282029412613!2d89.38056627401677!3d26.86448986216387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e3cbca0d9651f3%3A0x83302b066f3a922!2sNPPF%20Colony!5e0!3m2!1sen!2sau!4v1747381568375!5m2!1sen!2sau" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3559.2282029412613!2d89.38056627401677!3d26.86448986216387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e3cbca0d9651f3%3A0x83302b066f3a922!2sNPPF%20Colony!5e0!3m2!1sen!2sau!4v1747381568375!5m2!1sen!2sau" 
+    width="600" height="450" style="border:0; border-radius:10px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
 </section>
 
 <!-- Bootstrap JS (should not contain custom code inside it) -->
@@ -208,6 +263,4 @@
   });
 </script>
 
-
-
-{{> footer}}
+{{> footer }}

@@ -1,229 +1,248 @@
-{{> header}}
-<style>
-  body {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trendy Textile</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Georgia', serif;
+      color: #2e2e2e;
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+        
 
-  body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-  }
+    h1, h2, h3, h4 {
+      font-family: 'Arial', sans-serif;
+    }
 
-  header {
-    background-color: #1584c945;
-    color:  #003366;
-    padding: 20px 0;
-    text-align: center;
-    border-radius: 25px;
-    margin: 20px;
-  }
-
-  header h1 {
-    font-size: 2.5rem;
-  }
-
-  main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-
-  section {
-    margin-bottom: 40px;
-  }
-
-  h2 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-    color: #003366;
-  }
-
-  h3 {
-    font-size: 1.5rem;
-    margin-top: 30px;
-    color: #003366;
-  }
-
-  p {
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-  }
-
-  ul {
-    list-style-type: disc;
-    margin-left: 20px;
-  }
-
-  strong {
-    font-weight: bold;
-  }
-
-  em {
-    font-style: italic;
-  }
-
-  /* Article Styles */
-  .article-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .article-block {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .article-text {
-    flex: 1;
-    padding: 20px;
-  }
-
-  .article-image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .article-image img {
-    width: 100%;
-    max-width: 600px;
-    border: 5px solid #ffc0cb9c;
-  }
-
-  .article-image figcaption {
-    text-align: center;
-    font-size: 1rem;
-    color: #555;
-  }
-  #newsletter {
-    display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center horizontally */
-    justify-content: center; /* Center vertically */
-    background-color: rgba(11, 111, 205, 0);
-    padding: 30px 15px; 
-    margin-top: 30px; 
-    text-align: center;
+    .main-title {
+  font-size: 2.4rem;
+  color: #003366;
+  font-family: 'Arial', sans-serif;
+  text-align: center;
+  padding: 10px 0 0 10px;
+  margin-bottom: 10px;
 }
 
-.newstext h4 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: normal;
-    font-size: 20px;
-    margin-bottom: 10px; /* Reduce gap */
-}
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
 
-.newstext p {
-    font-size: 14px;
-    color: #777;
-    margin-bottom: 20px; /* Adjust spacing below text */
-}
-.form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px; /* Reduce space between input & button */
-    width: 100%;
-    max-width: 400px; /* Limit width for better layout */
-}
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: url("productimage/sky1.jpg") no-repeat center center;
+      background-size: cover;
+      max-width: 100%;
+      padding: 0 40px;
+    }
 
-/* Input field */
-.form input {
-    width: 70%; 
-    border: none;
-    border-bottom: 2px solid black; 
-    outline: none;
-    background: transparent;
-    font-size: 16px;
-    padding: 8px 5px;
-    text-align: center;
-}
+    .content {
+      flex: 3;
+      min-width: 0;
+    }
 
-/* Placeholder text */
-.form input::placeholder {
-    color: #1a0e0e;
-    font-size: 14px;
-}
+    aside.recommendations {
+      flex: 1;
+      background: #f0f8ff;
+      padding: 16px;
+      margin-top: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      align-self: flex-start;
+    }
 
-/* Button */
-.form button {
-    background: black;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
+    .recommendation-item {
+      margin-bottom: 16px;
+      text-align: center;
+    }
 
-.form button:hover {
-    background: #333333aa; /* Slight hover effect */
-}
-</style>
+    .recommendation-item img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border: 2px solid #ccc;
+    }
 
-<title>Trendy Textile</title>
+    .recommendation-item a {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    section {
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      margin-top: 40px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      background: url("productimage/sky2.jpg") no-repeat center center;
+      background-size: cover;
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: black;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      margin-top: 25px;
+      color: black;
+    }
+
+    p {
+      color: black;
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    a {
+      color: #b71c1c;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #800000;
+    }
+
+    #newsletter {
+      background: linear-gradient(to right, #e3f2fd, #fce4ec);
+      border-radius: 15px;
+      padding: 40px 20px;
+      margin: 60px auto 30px;
+      max-width: 700px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+
+    .newstext h4 {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+      color: #003366;
+    }
+
+    .newstext p {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .form input {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 2px solid #004080;
+      border-radius: 5px;
+      outline: none;
+      width: 60%;
+      min-width: 200px;
+    }
+
+    .form button {
+      padding: 10px 18px;
+      background-color: #003366;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .form button:hover {
+      background-color: #002244;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+        padding: 0 20px;
+      }
+
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .form {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .form input, .form button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <header>
-    <h1>Fashion Souvenirs in Bhutan</h1>
-  </header>
+  {{> header}}
+
+  <h1 class="main-title">Trendy Textile</h1>
 
   <main>
-    <section>
-      <p>
-        Most visitors traveling to Bhutan are aware of what to buy or have an idea about the ordinary souvenirs 
-        like wood-carved masks, traditional Mandala paintings, prayer flags, or handmade papers. But Bhutan
-         offers more than just the ordinary—especially for those who love fashion and those who like to stand out.
-      </p>
+    <div class="content">
+      <section>
+        <h2>Fashion Souvenirs in Bhutan</h2>
+        <p>Most visitors traveling to Bhutan are aware of what to buy or have an idea about the ordinary souvenirs like wood-carved masks, traditional Mandala paintings, prayer flags, or handmade papers. But Bhutan offers more than just the ordinary—especially for those who love fashion and those who like to stand out.</p>
+        <p>Bhutan does not fall short of creative and innovative talents who cater to fashionistas always seeking new inspirations to turn streets into runways. Each piece narrates a story—from traditional handlooms to stylish clutches. You won't just be buying a chic purse; you'll be buying stories woven with culture, passion, and heritage.</p>
+        <p>From repurposed textiles to cool accessories inspired by ethnicity and tradition, Bhutanese fashion brings together sustainability, storytelling, and style. Below are some top fashion influencers and designers in Bhutan that you should know about while visiting.</p>
+      </section>
 
-      <p>
-        Bhutan does not fall short of creative and innovative talents who cater to fashionistas always seeking
-         new inspirations to turn streets into runways. Each piece narrates a story—from traditional handlooms to
-          stylish clutches. You won't just be buying a chic purse; you'll be buying stories woven with culture, 
-          passion, and heritage.
-      </p>
+      <section>
+        <h2>Bhutan Street Fashion</h2>
+        <p>Bhutan Street Fashion is a photo-based fashion blog that finds inspiration on the streets of Bhutan, portraying an unfiltered sense of modernization. Its creators draw motivation from the everyday lives of Bhutanese people, blending tradition with contemporary expression.</p>
+        <p>Through Instagram and Facebook, the blog showcases traditional values and their evolution. It has inspired many Bhutanese youth to fall in love with their heritage costumes and recognize their cultural significance. Launched in 2010, Bhutan Street Fashion continues to grow, connecting Bhutanese fashion to a global audience.</p>
+      </section>
 
-      <p>
-        From repurposed textiles to cool accessories inspired by ethnicity and tradition, 
-        Bhutanese fashion brings together sustainability, storytelling, and style. Below are some top 
-        fashion influencers and designers in Bhutan that you should know about while visiting.
-      </p>
-    </section>
+      <section>
+        <h2>CDK: Contemporary Bhutanese Clothing Line</h2>
+        <p>CDK is a Bhutanese contemporary casual clothing brand based in Thimphu. The name “CDK” is derived from the founder's name, Chandrika. Launched in Fall 2016, the collection incorporates Bhutanese textiles—silk and raw silk—dyed with natural pigments.</p>
+        <p>The brand is committed to eco-friendly practices, challenging fashion’s status as one of the world's most polluting industries. CDK offers traditionally inspired daily wear with a modern touch. In addition to clothing, they sell stylish accessories like bags, hand clutches, belts, and stoles—perfect for travelers who want to look classy while supporting local craftsmanship.</p>
+        <p>The CDK store is located just above the Craft Bazaar in the capital city, making it easily accessible for visitors.</p>
+      </section>
+    </div>
 
-    <section>
-      <h2>Bhutan Street Fashion (Fashion Blogger)</h2>
-      <p>
-        Bhutan Street Fashion is a photo-based fashion blog that finds inspiration on the streets of
-         Bhutan, portraying an unfiltered sense of modernization. Its creators draw motivation from the 
-         everyday lives of Bhutanese people, blending tradition with contemporary expression.
-      </p>
-      <p>
-        Through Instagram and Facebook, the blog showcases traditional values and their evolution.
-         It has inspired many Bhutanese youth to fall in love with their heritage costumes and recognize
-          their cultural significance. Launched in 2010, Bhutan Street Fashion continues to grow, connecting
-           Bhutanese fashion to a global audience.
-      </p>
-    </section>
+     <aside class="recommendations">
+      <h3>You may also like</h3>
+      <div class="recommendation-item">
+        <a href="/A1">
+      <img src="/productimage/A1.jpg" alt="The Legacy of Bhutanese Weaving">
+        <a href="/A1">The Legacy of Bhutanese Weaving</a>
+      </div>
+   <div class="recommendation-item">
+    <a href="/A2">
+      <img src="/productimage/A2.jpeg" alt="Origins of Traditional Dress">
+      <div>Origins of Traditional Dress</div>
+    </a>
+  </div>
 
-    <section>
-      <h2>CDK: Contemporary Bhutanese Clothing Line</h2>
-      <p>
-        CDK is a Bhutanese contemporary casual clothing brand based in Thimphu. The name “CDK” is derived from the founder's name, Chandrika. Launched in Fall 2016, the collection incorporates Bhutanese textiles—silk and raw silk—dyed with natural pigments.
-      </p>
-      <p>
-        The brand is committed to eco-friendly practices, challenging fashion’s status as one of the world's most polluting industries. CDK offers traditionally inspired daily wear with a modern touch. In addition to clothing, they sell stylish accessories like bags, hand clutches, belts, and stoles—perfect for travelers who want to look classy while supporting local craftsmanship.
-      </p>
-      <p>
-        The CDK store is located just above the Craft Bazaar in the capital city, making it easily accessible for visitors.
-      </p>
-    </section>
+    </aside>
   </main>
 
   <section id="newsletter">
@@ -232,10 +251,8 @@
       <p>Get E-mail about our latest products and special offers</p>
     </div>
     <div class="form">
-      <form>
-        <input type="email" placeholder="Your Email Address" required />
-        <button type="submit">Sign Up</button>
-      </form>
+      <input type="text" placeholder="Your Email Address" />
+      <button>Sign Up</button>
     </div>
   </section>
 

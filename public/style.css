@@ -91,47 +91,66 @@
 }
 body {
   padding-top: 100px;
-}
-
-/* Styling for the search form */
-.search-form form {
+}.custom-search-form {
   display: flex;
   align-items: center;
   border: 1px solid #961f1f;
   border-radius: 20px;
   overflow: hidden;
   height: 35px;
-  width: 100%; /* Make the form take up the available width */
+  width: 100%;
+  max-width: 400px; /* Optional: set a max width */
+  background-color: #fff;
+}/* Container for the search form */
+.search-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Search form styling */
+.search-form {
+  display: flex;
+  align-items: center;
+  border: 1px solid #961f1f;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 35px;
+  background-color: #fff;
 }
 
 /* Input field styling */
-.search-form input {
+.search-input {
+  flex-grow: 1;
   padding: 8px 12px;
   border: none;
   outline: none;
-  flex-grow: 1; /* Allow the input to take up the remaining space */
+  font-size: 14px;
+  background-color: transparent;
+  color: #333;
 }
 
-/* Button styling */
-.search-form button {
-  padding: 8px 12px;
+/* Placeholder text color */
+.search-input::placeholder {
+  color: #aaa;
+}
+
+/* Search button styling */
+.search-button {
   background-color: #f0f0f0;
   border: none;
-  border-radius: 4px;
+  padding: 0 12px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* Ensure the button fills the height of the form */
-  flex-shrink: 0; /* Prevent the button from shrinking */
+  height: 100%;
+  flex-shrink: 0;
 }
-
-/* Icon inside the button */
-.search-form button i {
-  font-size: 18px; /* Adjust the size of the icon */
-  color: #333; /* Icon color */
+.search-button i {
+  font-size: 16px;
+  color: #333;
 }
-
 #navbar {
     display: flex;
     
@@ -331,17 +350,15 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
     margin-top: 10px;
 }
 
-#hero {
+#hero-index {
     display: flex;
-    justify-content: center; /* Center content */
+    justify-content: space-between; /* space out items */
     align-items: center;
     height: 80vh;
     padding: 0 50px; /* Spacing from edges */
-    gap: 10px; /* Space between text and image */
-    background: url('/productimage/spring.JPG');
+    gap: 5px; /* Space between text and image */
+    background: url('/productimage/sky1.JPG');
     border-radius: 10px; /* Rounded corners */
-    margin-left: 0px;
-    margin-right: 0px;
     margin-bottom: 100px;
     margin-top: 100px;
      background-repeat: no-repeat;
@@ -350,80 +367,76 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focu
       display: flex;
         justify-content: center;
           align-items: center;
+           
 }
-    
-/* Left and Right Text Sections */
-.hero-text-left, .hero-text-right {
-   
+    .hero-index-text-left, .hero-index-text-right {
     display: flex;
-   
+    flex-direction: column; /* Ensures vertical text layout */
     color: #333;
-    max-width: 400px;
-   
-}
-.hero-text-left {
-  text-align: left;
-  flex-basis: 50%;
-  padding-left: 40px;
-  flex-direction: column;
-  font-size: 1.4rem;
-  font-weight: 70;
-  max-width: 400px;
-  margin-left: 20px;
-  word-wrap: break-word;
-  line-height: 1.6;
+    font-size: 1.4rem;
+    line-height: 1.2;
+    word-wrap: break-word;
+    flex: 1; /* Changed from fixed width to flexible layout */
+    min-width: 0; /* ADDED: Prevents text blocks from squishing image */
+}.hero-index-text-left {
+    text-align: left;
+    font-weight: 70; 
+    padding-left: 80px; /* Reduced padding for better spacing */
+    white-space: nowrap;
 }
 
-.hero-text-right {
-  text-align: right;
-  align-items: flex-end;
-  flex-basis: 30%;
-  flex-direction: column;
-  font-size: 1.4rem;
-  font-weight: 200;
-  max-width: 400px;
-  margin-right: 50px;
-  word-wrap: break-word;
-  line-height: 1.6;
+.hero-index-text-right {
+    text-align: right;
+    font-weight: 70;
+    padding-right: 40px; /* Reduced padding for better spacing */
 }
-.hero-image {
-  flex: 2.5; 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-basis: 140%;
-  margin-left: 150px;
+
+/* Hero Image Section */
+.hero-index-image {
+    flex: 3.5; /* CHANGED: Increased from 2 to give more space to the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 100px; /* ✅ Added: pushes image slightly to the right */
 }
-.hero-image img {
-  width: 100%; 
-  max-width: 100%; 
-  height: auto;
-  border-radius: 10px;
-   
+
+.hero-index-image img {
+    width: 100%;  
+       height: 100%; 
+       max-height: 90vh; /* Optional limit to prevent stretching */
+    object-fit: cover; /* ADDED: Ensures image covers space without distortion */
+    border-radius: 10px;
 }
-#hero h4 {
+
+/* Text Styling */
+#hero-index h4 {
     padding-bottom: 5px;
 }
 
-#hero h1 {
+#hero-index h1 {
     color: rgba(15, 1, 13, 0.63);
 }
 
 /* Button Styling in Hero Section */
-#hero button {
-    background-color: #c3189e1d; /* Background color */
+#hero-index button {
     color: rgb(12, 3, 3); /* Text color */
-    padding: 10px 10px; /* Padding inside the button */
     border: none; /* Remove button border */
-    border-radius: 5px; /* Rounded corners */
     font-size: 16px; /* Font size */
     cursor: pointer; /* Pointer cursor on hover */
     transition: background-color 0.3s ease; /* Smooth background color change on hover */
 }
-
-#hero button:hover {
-    background-color: #4818c318; /* Darken background on hover */
+.hero-index-button-link a {
+  text-decoration: none; 
+  color: inherit; 
+  display: inline-block; 
 }
+
+/* Button hover background */
+.hero-index-button-link:hover {
+  background-color: #1876c33e; /* Darken background on hover */
+  cursor: pointer; /* Show pointer cursor */
+}
+
 /* PRODUCT SECTION BACKGROUND */
 #product {
     text-align: center;

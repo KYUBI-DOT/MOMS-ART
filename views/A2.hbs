@@ -3,289 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bhutanese Textiles</title>
+  <title>Origins of Traditional Dress</title>
   <style>
     body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f4f4f4;
-    }
-
-    header {
-      background-color: #1584c945;
-      color: #003366;
-      padding: 20px 0;
-      text-align: center;
-      border-radius: 25px;
-      margin: 20px;
-    }
-
-    header h1 {
-      font-size: 2.5rem;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    section {
+      font-family: 'Georgia', serif;
+      color: #2e2e2e;
+      margin-top: 40px;
       margin-bottom: 40px;
     }
 
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 15px;
+    h1, h2, h3, h4 {
+      font-family: 'Arial', sans-serif;
+    }
+
+    header {
+      background: url("productimage/sky2.jpg") no-repeat center center;
+      background-size: cover;
       color: #003366;
+      padding: 30px 30px;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 2.8rem;
+      margin: 0;
+    }
+
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      background: url("productimage/sky1.jpg") no-repeat center center;
+      background-size: cover;
+      max-width: 100%;
+      padding: 0 40px;
+    }
+
+    .content {
+      flex: 3;
+      min-width: 0;
+    }
+
+    aside.recommendations {
+      flex: 1;
+      background: #f0f8ff;
+      padding: 16px;
+      margin-top: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      align-self: flex-start;
+    }
+
+    .recommendation-item {
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .recommendation-item img {
+      width: 100%;
+      max-height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      border: 2px solid #ccc;
+    }
+
+    .recommendation-item a {
+      font-size: 1rem;
+      font-weight: bold;
+      color: #003366;
+    }
+
+    section {
+      border-radius: 12px;
+      padding: 25px 30px;
+      margin-bottom: 30px;
+      margin-top: 40px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+      background: url("productimage/sky2.jpg") no-repeat center center;
+      background-size: cover;
+      transition: all 0.3s ease;
+    }
+
+    section:hover {
+      transform: translateY(-3px);
+    } .article-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.article-image img {
+  max-width: 90%;
+  height: 70vh;
+  border-radius: 12px;
+  border: 5px solid #f8bbd018;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      color: black;
     }
 
     h3 {
-      font-size: 1.5rem;
-      margin-top: 30px;
-      color: #003366;
+      font-size: 1.4rem;
+      margin-top: 25px;
+      color: black;
     }
 
-    p {
-      margin-bottom: 15px;
+    p, li {
+      color: black;
       font-size: 1.1rem;
+      line-height: 1.8;
     }
 
-    ul {
-      list-style-type: disc;
-      margin-left: 20px;
-    }
-
-    strong {
+    a {
+      color: #b71c1c;
+      text-decoration: none;
       font-weight: bold;
     }
 
-    em {
-      font-style: italic;
-    }
-
-    .article-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-    }
-
-    .article-block {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .article-text {
-      flex: 1;
-      padding: 20px;
-    }
-
-    .article-image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .article-image img {
-      width: 100%;
-      max-width: 400px;
-      border: 5px solid #ffc0cb9c;
-    }
-
-    .article-image figcaption {
-      text-align: center;
-      font-size: 1rem;
-      color: #555;
-    }
-
-    #newsletter {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(11, 111, 205, 0);
-      padding: 30px 15px;
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .newstext h4 {
-      font-family: 'Poppins', sans-serif;
-      font-weight: normal;
-      font-size: 20px;
-      margin-bottom: 10px;
-    }
-
-    .newstext p {
-      font-size: 14px;
-      color: #777;
-      margin-bottom: 20px;
-    }
-
-    .form {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .form input {
-      width: 70%;
-      border: none;
-      border-bottom: 2px solid black;
-      outline: none;
-      background: transparent;
-      font-size: 16px;
-      padding: 8px 5px;
-      text-align: center;
-    }
-
-    .form input::placeholder {
-      color: #1a0e0e;
-      font-size: 14px;
-    }
-
-    .form button {
-      background: black;
-      color: white;
-      border: none;
-      padding: 5px 10px;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
-
-    .form button:hover {
-      background: #333333aa;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .article-container {
-        flex-direction: column;
-      }
-
-      .article-image img {
-        max-width: 100%;
-      }
-
-      .form {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .form input,
-      .form button {
-        width: 100%;
-      }
+    a:hover {
+      text-decoration: underline;
+      color: #800000;
     }
   </style>
 </head>
+
 <body>
   {{> header}}
 
-  <main>
-    <section class="article-container">
-      <article class="article-block">
-        <div class="article-text">
-          <h2>The History of Bhutanese Textiles</h2>
-          <p>
-            The history of Bhutanese textiles becomes more evident in the last century.
-            As textile production moved beyond the confines of clothing to artistic expression of 
-            individuals and communities, patronage from the royal household was vital.
-          </p>
-          <p>
-            Although the founders of the Wangchuck dynasty are from Bumthang, their ancestral home 
-            is in Lhuntse District, which was historically recognised as the home of the most celebrated
-            weavers in the country. The role and influence of royal women in sustaining and furthering the
-            weaving tradition must be acknowledged.
-          </p>
-          <p>
-            The 10th Trongsa Penlop Jigme Namgyal built the Wangducholing Palace in 1857. The loom houses
-            (thagchem), accommodating 30 to 40 weavers, were built around the same time near the palace and
-            existed until the mid-1900s.
-          </p>
-        </div>
+  <header>
+    <h1>Origins of Traditional Dress</h1>
+  </header>
 
+  <main>
+    <div class="content">
+      <section>
+        <h2>The History of Bhutanese Textiles</h2>
+        <p>Textile production in Bhutan, initially confined to practical use, evolved into a significant cultural and artistic expression. With the support of the royal household, especially the Wangchuck dynasty rooted in Bumthang and Lhuntse District, weaving became a revered heritage art.</p>
+        <p>The Wangducholing Palace, built by Trongsa Penlop Jigme Namgyal in 1857, was surrounded by loom houses known as <em>thagchem</em>, hosting dozens of skilled weavers and marking a key period in Bhutanese textile legacy.</p>
         <figure class="article-image">
           <img src="/productimage/A5.jpg" alt="An assortment of textiles from Bhutan">
-          </figure>
+          <figcaption>Handwoven masterpieces displayed at a Bhutanese textile exhibit.</figcaption>
+        </figure>
+      </section>
 
-        <div class="article-text">
-          <p>
-            The youngest sister of the second king, Princess Ashi Kencho Wangmo Wangchuck 
-            (later a Buddhist nun), is credited to have introduced the horizontal loom from Tibet in the 1930s.
-          </p>
-          <p>
-            Her Majesty the Queen Mother Ashi Sangay Choden Wangchuck continues to extend
-            royal patronage to the textile industry. Her Majesty's interest and intervention have
-            revitalised Bhutanese textiles, given the industry an impetus within the country, and brought
-            world attention to Bhutanese craftsmanship. She is the Royal Patron of the Bhutan Textile Museum 
-            and the Chairman of the Royal Textile Academy of Bhutan (RTAB).
-          </p>
-        </div>
-
+      <section>
+        <h2>Modern Revival and Royal Patronage</h2>
+        <p>Princess Ashi Kencho Wangmo Wangchuck played a pivotal role in the 1930s by introducing horizontal looms from Tibet. This modernization was furthered by Her Majesty Queen Mother Ashi Sangay Choden Wangchuck, who championed textile preservation and innovation.</p>
+        <p>Her Majesty’s work through the Bhutan Textile Museum and the Royal Textile Academy has brought international acclaim to Bhutanese weaving, while inspiring a new generation of textile artists.</p>
         <figure class="article-image">
           <img src="/productimage/A4.webp" alt="A Bhutanese textile">
-          </figure>
+          <figcaption>Intricate designs of a Bhutanese textile woven with spiritual symbolism.</figcaption>
+        </figure>
+      </section>
 
-        <div class="article-text">
-          <p>
-            Today Bhutanese textiles have reached new heights of dynamism and respect; they are valued not only 
-            for their economic viability, but also as a symbol of Bhutan's artistic heritage that commands world 
-            attention and appreciation.
-          </p>
+      <section>
+        <h2>Women Weavers</h2>
+        <p>Women have always been at the heart of Bhutan’s weaving tradition. While farmers wove in spare time, royal and aristocratic households nurtured professional weavers (<em>thama</em>) who produced textiles of exceptional quality. This system created a vibrant economy centered around cloth as wealth, tax, and spiritual token.</p>
+      </section>
 
-          <h3>Women Weavers</h3>
-          <p>
-            Ordinary weavers produced fabrics for general use that were of standard quality. 
-            The farmers wove only when they were free from agricultural work. It was the royal weavers, 
-            <em>thama</em>, in the royal loom houses who were the professionals. Some of the aristocratic and 
-            landed households also had professional weavers.
-          </p>
-          <p>
-            The all-encompassing use of textiles took it beyond the realm of clothing to the realms of rituals 
-            and symbolism, as a form of wealth and commodities for trade and taxation. A well-established system
-             of
-            production, use and exchange linked the communities, extended the threads of interdependence, 
-            and wove 
-            the very fabric of Bhutanese society.
-          </p>
+      <section>
+        <h2>Types of Patterns</h2>
+        <ul>
+          <li><strong>Plain Weaves:</strong> Typically in striped or plaid patterns.</li>
+          <li><strong>Martha:</strong> Red or maroon dominant plaid design.</li>
+          <li><strong>Sertha:</strong> Yellow or orange dominant plaid weave.</li>
+          <li><strong>Thara:</strong> White-based horizontal striped <em>Kira</em>.</li>
+          <li><strong>Kamtham Jardrima:</strong> Incorporates rainbow-striped patterns.</li>
+        </ul>
+      </section>
+    </div>
 
-          <h3>Types of Patterns</h3>
-          <ul>
-            <li><strong>Plain Weaves:</strong> Plain weave textiles are usually woven in patterns with
-             stripes and plaids.</li>
-            <li><strong>Martha:</strong> Plaid weave usually with red or maroon as the dominant color.</li>
-            <li><strong>Sertha:</strong> Plaid weave usually with yellow or orange as the dominant color.</li>
-            <li><strong>Thara:</strong> Woven only for production of horizontal striped <em>Kira</em> with white
-             as the dominant color.</li>
-            <li><strong>Kamtham Jardrima:</strong> Striped weave incorporating the colors of the rainbow.</li>
-          </ul>
-        </div>
-      </article>
-    </section>
-
-    <section id="newsletter">
-      <div class="newstext">
-        <h4>Join Our Newsletter!</h4>
-        <p>Get E-mail about our latest products and special offers</p>
+    <aside class="recommendations">
+      <h3>You may also like</h3>
+      <div class="recommendation-item">
+        <a href="/A1">
+      <img src="/productimage/A1.jpg" alt="The Legacy of Bhutanese Weaving">
+        <a href="/A1">The Legacy of Bhutanese Weaving</a>
       </div>
-      <div class="form">
-        <form>
-          <input type="email" placeholder="Your Email Address" required />
-          <button type="submit">Sign Up</button>
-        </form>
+      
+      <div class="recommendation-item">
+          <a href="/A3">
+        <img src="/productimage/A3.jpg" alt="Trendy Textile">
+        <a href="/A3">Trendy Textile</a>
       </div>
-    </section>
+    
+</aside>
+  
   </main>
+
+  <section id="newsletter">
+    <div class="newstext">
+      <h4>Join Our Newsletter!</h4>
+      <p>Get E-mail about our latest products and special offers</p>
+    </div>
+    <div class="form">
+      <form>
+        <input type="email" placeholder="Your Email Address" required />
+        <button type="submit">Sign Up</button>
+      </form>
+    </div>
+  </section>
 
   {{> footer}}
 </body>

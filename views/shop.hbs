@@ -214,12 +214,14 @@ select, button {
     <div class="topshoptext">
       <form class="store container" method="GET" action="/shop">
         <div class="select-container">
-          <select name="shopsort">
-            <option value="" {{#unless shopsort}}selected{{/unless}}>Sort By</option>
-            <option value="newest" {{#if (eq shopsort "newest")}}selected{{/if}}>Latest</option>
-            <option value="oldest" {{#if (eq shopsort "oldest")}}selected{{/if}}>Trendy</option>
-            <option value="recommended" {{#if (eq shopsort "recommended")}}selected{{/if}}>Recommended</option>
-          </select>
+       <select name="shopsort">
+  <option value="newest" {{#if (eq shopsort "newest")}}selected{{/if}}>Latest</option>
+  <option value="oldest" {{#if (eq shopsort "oldest")}}selected{{/if}}>Trendy</option>
+  <option value="ascending" {{#if (eq shopsort "ascending")}}selected{{/if}}>Low to High</option>
+  <option value="descending" {{#if (eq shopsort "descending")}}selected{{/if}}>High to Low</option>
+  <option value="recommended" {{#if (eq shopsort "recommended")}}selected{{/if}}>Recommended</option>
+</select>
+
 
           <select name="category" class="category-dropdown">
             <option value="" {{#unless category}}selected{{/unless}}>All Categories</option>
