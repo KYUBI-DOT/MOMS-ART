@@ -29,7 +29,6 @@ db.connect((err) => {
   }
   console.log("Connected to the MySQL database.");
 });
-global.db = db;
 
 // Configure session
 app.use(session({
@@ -63,6 +62,7 @@ app.use((req, res, next) => {
 app.use('/', require('./routes/userRoutes'));
 app.use('/auth', require('./routes/auth'));
 
+
 app.get('/', (req, res) => {
   const query = "SELECT * FROM product LIMIT 3";
 
@@ -86,8 +86,13 @@ Object.entries(hbsHelpers).forEach(([name, fn]) => {
 });
 
 
+
 // Start server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+const util = require('util');
+db.query = util.promisify(db.query);
+
+module.exports = db;

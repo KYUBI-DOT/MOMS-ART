@@ -1,8 +1,17 @@
 const express = require("express");
 const mysql = require("mysql");
-const db = require("../db");
+const db = require("../config/db");
 const router = express.Router();
 const { ensureAdmin } = require('../middleware/auth');
+
+// Middleware to check if user is logged in
+function ensureLoggedIn(req, res, next) {
+  if (req.session.user) {
+    next();
+  } else {
+    res.redirect('/login');
+  }
+}
 
 // Home Page
 router.get('/', (req, res) => {
@@ -18,7 +27,7 @@ router.get('/', (req, res) => {
 
 // Auth Pages
 router.get('/register', (req, res) => res.render('register'));
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => res.render('login', { error: null }));
 router.get('/signin', (req, res) => res.render('signin'));
 
 router.get('/logout', (req, res) => {
@@ -28,10 +37,92 @@ router.get('/logout', (req, res) => {
   });
 });
 
-// After Login Page
-router.get('/logined', (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
-  res.render('logined', { user: req.session.user });
+// Login POST handler
+router.post('/login', (req, res) => {
+  const { email, password } = req.body;
+
+  db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.render('login', { error: 'Something went wrong. Try again.' });
+    }
+
+    const user = results[0];
+
+    if (!user) {
+      return res.render('login', { error: 'User not found' });
+    }
+
+    // TODO: Replace with hashed password verification
+    if (password === user.password) {
+      req.session.user = user; // Save full user object in session
+      res.redirect('/logined');
+    } else {
+      res.render('login', { error: 'Incorrect password' });
+    }
+  });
+});
+
+// Logged-in user account page
+router.get('/logined', ensureLoggedIn, (req, res) => {
+  const userId = req.session.user.id;
+
+  const sql = 'SELECT street, city, state, zip, country FROM users WHERE id = ?';
+  db.query(sql, [userId], (err, results) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send("Database error.");
+    }
+
+    if (results.length === 0) {
+      return res.status(404).send("User not found.");
+    }
+
+    const address = results[0];
+
+    // Check if any address field is missing or empty
+    const isAddressMissing =
+      !address.street || !address.city || !address.state || !address.zip || !address.country;
+
+    // Build updated user data with address fields
+    const userWithAddress = {
+      ...req.session.user,
+      street: address.street,
+      city: address.city,
+      state: address.state,
+      zip: address.zip,
+      country: address.country,
+    };
+
+    res.render('logined', {
+      user: userWithAddress,
+      showForm: isAddressMissing,
+    });
+  });
+});
+
+
+// Update address POST handler
+router.post('/logined/address', ensureLoggedIn, (req, res) => {
+  const { street, city, state, zip, country } = req.body;
+  const userId = req.session.user.id;
+
+  const sql = 'UPDATE users SET street = ?, city = ?, state = ?, zip = ?, country = ? WHERE id = ?';
+  db.query(sql, [street, city, state, zip, country, userId], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.render('logined', { user: req.session.user, showForm: true, error: 'Failed to update address' });
+    }
+
+    // Update session user data
+    req.session.user.street = street;
+    req.session.user.city = city;
+    req.session.user.state = state;
+    req.session.user.zip = zip;
+    req.session.user.country = country;
+
+    res.redirect('/logined');
+  });
 });
 
 // Static Pages
@@ -111,9 +202,7 @@ router.get('/product/:id', (req, res) => {
   });
 });
 
-// ------------------------
 // Cart Functionality
-// ------------------------
 
 // View Cart
 router.get('/cart', (req, res) => {
