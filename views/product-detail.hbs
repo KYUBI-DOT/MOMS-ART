@@ -31,14 +31,14 @@
       <p><strong>ZipPay:</strong> from Nu {{calculateWeekly product.price}}</p>
       <p><strong>Afterpay:</strong> 4 payments of Nu {{calculateAfterpay product.price}}</p>
     </div>
-  </div>
-<aside class="recommendations">
-  <h3>You may also like</h3>
 
+
+  </div><aside class="recommendations">
+  <h3>You may also like</h3>
   {{#if recommendations.length}}
     {{#each recommendations}}
       <div class="recommendation-item">
-        <a href="/product-detail/{{id}}">
+        <a href="/product/{{id}}">
           <img src="{{image}}" alt="{{name}}">
           <div class="recommendation-title">{{name}}</div>
         </a>
@@ -48,6 +48,8 @@
     <p>No related items found.</p>
   {{/if}}
 </aside>
+
+
 
 </section>
 {{>footer}}

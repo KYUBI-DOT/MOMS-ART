@@ -278,16 +278,15 @@ select, button {
     {{/if}}
   </div>
 </section>
-
 <section id="newsletter">
   <div class="newstext">
     <h4>Join Our Newsletter!</h4>
     <p>Get E-mail about our latest products and special offers</p>
   </div>
-  <div class="form">
-    <input type="text" placeholder="Your Email Address" />
-    <button>Sign Up</button>
-  </div>
+  <form class="form" action="/subscribe" method="POST">
+    <input type="email" name="email" placeholder="Your Email Address" required />
+    <button type="submit">Sign Up</button>
+  </form>
 </section>
 
 <!-- Bootstrap JS -->

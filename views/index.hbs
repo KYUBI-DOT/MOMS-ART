@@ -37,13 +37,6 @@
   </button>
 </form>
 
-
-
-
-
-
-
-
   <!-- Right: Navigation Links -->
   <nav id="navbar-container">
     <ul id="navbar">
@@ -97,201 +90,44 @@
   <p>Jigme Choden Hor Collection</p>
 
   <div class="pro-container">
-<!-- Product 1 -->
-<form class="pro" action="/cart/add/1" method="POST">
-  <input type="hidden" name="name" value="7 Wrap Stripes" />
-  <input type="hidden" name="price" value="11999" />
-  <input type="hidden" name="image" value="/productimage/p1.png" />
-  <img src="/productimage/p1.png" alt="7 Wrap Stripes" />
-  <div class="des">
-    <span><a href="#">Kira</a></span>
-    <h5><a href="#">7 Wrap Stripes</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 11999</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
+    {{#each products}}
+      <form class="pro" action="/cart/add/{{id}}" method="POST">
+        <input type="hidden" name="name" value="{{name}}" />
+        <input type="hidden" name="price" value="{{price}}" />
+        <input type="hidden" name="image" value="{{image}}" />
 
-<!-- Product 2 -->
-<form class="pro" action="/cart/add/2" method="POST">
-  <input type="hidden" name="name" value="5 Wrap Stripes" />
-  <input type="hidden" name="price" value="10549" />
-  <input type="hidden" name="image" value="/productimage/p2.png" />
-  <img src="/productimage/p2.png" alt="5 Wrap Stripes" />
-  <div class="des">
-    <span><a href="#">Gho</a></span>
-    <h5><a href="#">5 Wrap Stripes</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 10549</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
+        <a href="/product/{{id}}">
+          <img src="{{image}}" alt="{{name}}" />
+        </a>
+        <div class="des">
+          <h5><a href="/product/{{id}}">{{name}}</a></h5>
+          
+          <span>{{category}}</span>
+          <div class="star">
+            {{#each (range 1 5)}}
+            {{/each}}
+          </div>
+          <p>Nu {{price}}</p>
+        </div>
 
-<!-- Product 3 -->
-<form class="pro" action="/cart/add/3" method="POST">
-  <input type="hidden" name="name" value="3 Wrap Stripes" />
-  <input type="hidden" name="price" value="5199" />
-  <input type="hidden" name="image" value="/productimage/p3.png" />
-  <img src="/productimage/p3.png" alt="3 Wrap Stripes" />
-  <div class="des">
-    <span><a href="#">Kira</a></span>
-    <h5><a href="#">3 Wrap Stripes</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 5199</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
-
-<!-- Product 4 -->
-<form class="pro" action="/cart/add/4" method="POST">
-  <input type="hidden" name="name" value="Mixed Pattern Kira" />
-  <input type="hidden" name="price" value="22259" />
-  <input type="hidden" name="image" value="/productimage/p4.png" />
-  <img src="/productimage/p4.png" alt="Mixed Pattern Kira" />
-  <div class="des">
-    <span><a href="#">Kira</a></span>
-    <h5><a href="#">Mixed Pattern Kira</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fas fa-star-half-alt"></i>
-    </div>
-    <p>Nu 22259</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
-
-<!-- Product 5 -->
-<form class="pro" action="/cart/add/5" method="POST">
-  <input type="hidden" name="name" value="3 Wrap Stripes" />
-  <input type="hidden" name="price" value="5299" />
-  <input type="hidden" name="image" value="/productimage/p5.png" />
-  <img src="/productimage/p5.png" alt="3 Wrap Stripes" />
-  <div class="des">
-    <span><a href="#">Kira</a></span>
-    <h5><a href="#">3 Wrap Stripes</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 5299</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
-
-<!-- Product 6 -->
-<form class="pro" action="/cart/add/6" method="POST">
-  <input type="hidden" name="name" value="3 Wrap Stripes Kira" />
-  <input type="hidden" name="price" value="4999" />
-  <input type="hidden" name="image" value="/productimage/p6.png" />
-  <img src="/productimage/p6.png" alt="3 Wrap Stripes Kira" />
-  <div class="des">
-    <span><a href="#">Kira</a></span>
-    <h5><a href="#">3 Wrap Stripes Kira</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 4999</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
-
-<!-- Product 7 -->
-<form class="pro" action="/cart/add/7" method="POST">
-  <input type="hidden" name="name" value="5 Wrap Stripes Gho" />
-  <input type="hidden" name="price" value="16999" />
-  <input type="hidden" name="image" value="/productimage/p7.png" />
-  <img src="/productimage/p7.png" alt="5 Wrap Stripes Gho" />
-  <div class="des">
-    <span><a href="#">Gho</a></span>
-    <h5><a href="#">5 Wrap Stripes Gho</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 16999</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
-
-<!-- Product 8 -->
-<form class="pro" action="/cart/add/8" method="POST">
-  <input type="hidden" name="name" value="7 Wrap Stripes Silk" />
-  <input type="hidden" name="price" value="19999" />
-  <input type="hidden" name="image" value="/productimage/p8.png" />
-  <img src="/productimage/p8.png" alt="7 Wrap Stripes Silk" />
-  <div class="des">
-    <span><a href="#">Gho</a></span>
-    <h5><a href="#">7 Wrap Stripes Silk</a></h5>
-    <div class="star">
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-      <i class="fa-solid fa-star"></i>
-    </div>
-    <p>Nu 19999</p>
-  </div>
-  <button type="submit" class="cart-link">
-    <i class="fa-solid fa-cart-shopping cart"></i>
-  </button>
-</form>
+        <button type="submit" class="cart-link">
+          <i class="fa-solid fa-cart-shopping cart"></i>
+        </button>
+      </form>
+    {{/each}}
   </div>
 </section>
-
-
-
 <section id="newsletter">
   <div class="newstext">
     <h4>Join Our Newsletter!</h4>
     <p>Get E-mail about our latest products and special offers</p>
   </div>
-  <div class="form">
-    <input type="text" placeholder="Your Email Address" />
-    <button>Sign Up</button>
-  </div>
+  <form class="form" action="/subscribe" method="POST">
+    <input type="email" name="email" placeholder="Your Email Address" required />
+    <button type="submit">Sign Up</button>
+  </form>
 </section>
+
 
 <footer class="site-footer">
   <div class="column">
