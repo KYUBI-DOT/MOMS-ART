@@ -6,6 +6,7 @@ const hbs = require("hbs");
 const session = require("express-session");
 const searchRoutes = require('./routes/searchRoutes'); 
 const hbsHelpers = require('./utils/helper');
+const admin = require('./routes/admin');
 
 
 
@@ -20,6 +21,8 @@ const db = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = '123';
 
 // Connect to database
 db.connect((err) => {
@@ -84,7 +87,7 @@ app.use('/search', searchRoutes);
 Object.entries(hbsHelpers).forEach(([name, fn]) => {
   hbs.registerHelper(name, fn);
 });
-
+app.use('/admin', admin);
 
 
 // Start server
