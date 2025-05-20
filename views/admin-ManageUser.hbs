@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manage Users</title>
+  <style>
+    body {
+      background-color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      margin: 0;
+      font-family: sans-serif;
+    }
+    aside {
+      width: 16rem;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+    }
+    aside h2 {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    aside ul li {
+      margin-bottom: 0.75rem;
+    }
+    aside ul li a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+    aside ul li a:hover {
+      text-decoration: underline;
+    }
+    aside ul li:last-child a {
+      color: #dc2626;
+    }
+    main {
+      flex: 1;
+      padding: 2.5rem;
+    }
+    main h1 {
+      font-size: 1.875rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-radius: 0.5rem;
+      overflow: hidden;
+    }
+    thead {
+      background-color: #2563eb;
+      color: white;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    tbody tr:hover {
+      background-color: #f9fafb;
+    }
+    .btn-edit {
+      background-color: #2563eb;
+      color: white;
+      padding: 0.3rem 0.6rem;
+      border-radius: 0.3rem;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    .btn-edit:hover {
+      background-color: #1d4ed8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <aside>
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="/admin/dashboard">Dashboard</a></li>
+      <li><a href="/admin/manage-users">Manage Users</a></li>
+      <li><a href="/admin/products">Products</a></li>
+      <li><a href="/logout">Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- Main Content -->
+  <main>
+    <h1>Manage Users</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Country</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each users}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.city}}</td>
+          <td>{{this.state}}</td>
+          <td>{{this.country}}</td>
+          <td>
+            <a href="/admin/manage-users/edit/{{this.id}}" class="btn-edit">Edit</a>
+            <!-- Add Delete button or other actions here -->
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </main>
+
+</body>
+</html>

@@ -157,6 +157,10 @@
         {{#if cart.length}}
           {{#each cart}}
           <tr>
+            <td>
+  <img src="{{image}}" alt="{{name}}" style="width: 60px; height: auto; border-radius: 6px;"><br>
+  {{name}}
+</td>
             <td>{{product_name}}<br><span style="font-size:12px;"></span></td>
             <td>
               <form action="/update_quantity" method="POST">

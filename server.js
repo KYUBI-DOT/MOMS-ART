@@ -21,8 +21,6 @@ const db = mysql.createConnection({
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME
 });
-const ADMIN_USERNAME = 'admin';
-const ADMIN_PASSWORD = '123';
 
 // Connect to database
 db.connect((err) => {
