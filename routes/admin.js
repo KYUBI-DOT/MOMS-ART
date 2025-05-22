@@ -42,6 +42,9 @@ router.get("/dashboard/manage-users", isAdminLoggedIn, async (req, res) => {
   }
 });
 
+// Manage Products Page
+router.get("/dashboard/manage-products", isAdminLoggedIn, authController.viewProducts);
+
 // Logout
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
