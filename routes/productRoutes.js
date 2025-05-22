@@ -1,8 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const db = require("../db"); // or wherever your db connection is
+const db = require("../db");
 
-// Get single product with random recommendations
+// -----------------------------
+// GET: Product Detail with Recommendations
+// -----------------------------
 router.get('/product/:id', async (req, res) => {
   try {
     const productId = req.params.id;
@@ -24,7 +26,48 @@ router.get('/product/:id', async (req, res) => {
   }
 });
 
-// Fetch main product by ID
+// -----------------------------
+// POST: Add to Cart
+// -----------------------------
+router.post('/add-to-cart', (req, res) => {
+  const { product_id, product_name, product_price, image } = req.body;
+
+  if (!req.session.cart) req.session.cart = [];
+
+  req.session.cart.push({
+    product_id,
+    product_name,
+    product_price: parseFloat(product_price),
+    quantity: 1,
+    image
+  });
+
+  req.session.itemAdded = true;
+  res.redirect('/cart');
+});
+
+// -----------------------------
+// GET: Cart Page
+// -----------------------------
+router.get('/cart', (req, res) => {
+  const cart = req.session.cart || [];
+  const itemAdded = req.session.itemAdded;
+  req.session.itemAdded = null; // flash message cleanup
+
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => sum + item.product_price * item.quantity, 0);
+
+  res.render('cart', {
+    cart,
+    itemAdded,
+    totalItems,
+    totalPrice
+  });
+});
+
+// -----------------------------
+// Utilities
+// -----------------------------
 function getProductById(id) {
   return new Promise((resolve, reject) => {
     db.query('SELECT * FROM product WHERE id = ?', [id], (err, results) => {
@@ -34,7 +77,6 @@ function getProductById(id) {
   });
 }
 
-// Get 2 random products excluding the current one
 function getRecommendedProducts(excludeId) {
   return new Promise((resolve, reject) => {
     db.query(
