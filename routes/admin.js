@@ -45,6 +45,13 @@ router.get("/dashboard/manage-users", isAdminLoggedIn, async (req, res) => {
 // Manage Products Page
 router.get("/dashboard/manage-products", isAdminLoggedIn, authController.viewProducts);
 
+// Show Edit Product Form
+router.get("/dashboard/products/:id/edit", isAdminLoggedIn, authController.editProductForm);
+
+// Handle Edit Submission
+router.post("/dashboard/products/:id/edit", isAdminLoggedIn, authController.updateProduct);
+
+
 // Logout
 router.get('/logout', (req, res) => {
   req.session.destroy(err => {
