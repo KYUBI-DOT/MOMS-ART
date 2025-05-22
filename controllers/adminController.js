@@ -203,3 +203,28 @@ exports.toggleUserStatus = (req, res) => {
   });
 };
 
+
+
+exports.analyticsDashboard = async (req, res) => {
+  try {
+    const [userStats] = await db.promise().query("SELECT COUNT(*) AS total FROM users");
+    const [productStats] = await db.promise().query("SELECT COUNT(*) AS total FROM products");
+    const [newsletterStats] = await db.promise().query("SELECT COUNT(*) AS total FROM newsletter");
+
+    const [topProducts] = await db.promise().query(`
+      SELECT name, price, rating FROM products ORDER BY rating DESC LIMIT 5
+    `);
+
+    res.render("admin-analytics", {
+      userTotal: userStats[0].total,
+      productTotal: productStats[0].total,
+      newsletterTotal: newsletterStats[0].total,
+      topProducts,
+      admin: req.session.admin
+    });
+  } catch (err) {
+    console.error("Error loading analytics:", err);
+    res.status(500).send("Server error");
+  }
+};
+
