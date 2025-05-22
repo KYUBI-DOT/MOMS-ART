@@ -77,4 +77,10 @@ router.get('/logout', (req, res) => {
   });
 });
 
+// Analytics Dashboard
+router.get("/dashboard/analytics", isAdminLoggedIn, authController.analyticsDashboard);
+
+
 module.exports = router;
+
+
