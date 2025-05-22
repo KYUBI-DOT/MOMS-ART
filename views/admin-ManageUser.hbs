@@ -1,98 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Manage Users</title>
-  <style>
-    body {
-      background-color: #f3f4f6;
-      min-height: 100vh;
-      display: flex;
-      margin: 0;
-      font-family: sans-serif;
-    }
-    aside {
-      width: 16rem;
-      background-color: #ffffff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      padding: 1.5rem;
-    }
-    aside h2 {
-      font-size: 1.25rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-    }
-    aside ul li {
-      margin-bottom: 0.75rem;
-    }
-    aside ul li a {
-      color: #2563eb;
-      text-decoration: none;
-    }
-    aside ul li a:hover {
-      text-decoration: underline;
-    }
-    aside ul li:last-child a {
-      color: #dc2626;
-    }
-    main {
-      flex: 1;
-      padding: 2.5rem;
-    }
-    main h1 {
-      font-size: 1.875rem;
-      font-weight: bold;
-      margin-bottom: 1.5rem;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: #ffffff;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-radius: 0.5rem;
-      overflow: hidden;
-    }
-    thead {
-      background-color: #2563eb;
-      color: white;
-    }
-    th, td {
-      padding: 0.75rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid #e5e7eb;
-    }
-    tbody tr:hover {
-      background-color: #f9fafb;
-    }
-    .btn-edit {
-      background-color: #2563eb;
-      color: white;
-      padding: 0.3rem 0.6rem;
-      border-radius: 0.3rem;
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .btn-edit:hover {
-      background-color: #1d4ed8;
-    }
-  </style>
-</head>
-<body>
+{{> header}}
 
-  <!-- Sidebar -->
-  <aside>
-    <h2>Admin Panel</h2>
-    <ul>
-      <li><a href="/admin/dashboard">Dashboard</a></li>
-      <li><a href="/admin/manage-users">Manage Users</a></li>
-      <li><a href="/admin/products">Products</a></li>
-      <li><a href="/logout">Logout</a></li>
-    </ul>
-  </aside>
+<style>
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: #f6f6f6;
+    margin: 0;
+    padding: 0;
+  }
 
-  <!-- Main Content -->
-  <main>
-    <h1>Manage Users</h1>
+  .cart-wrapper {
+    margin-top: 120px;
+    display: flex;
+    padding: 60px 20px;
+  }
+
+  .cart-left {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+    padding: 32px;
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  th, td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .btn {
+    background-color: transparent;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .status-active {
+    color: green;
+    font-weight: bold;
+  }
+
+  .status-inactive {
+    color: red;
+    font-weight: bold;
+  }
+
+  form {
+    display: inline;
+  }
+</style>
+
+<div class="cart-wrapper">
+  <div class="cart-left">
+    <h2>Manage Users</h2>
 
     <table>
       <thead>
@@ -103,6 +92,7 @@
           <th>City</th>
           <th>State</th>
           <th>Country</th>
+          <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
@@ -116,14 +106,26 @@
           <td>{{this.state}}</td>
           <td>{{this.country}}</td>
           <td>
-            <a href="/admin/manage-users/edit/{{this.id}}" class="btn-edit">Edit</a>
-            <!-- Add Delete button or other actions here -->
+            {{#if this.status}}
+              <span class="status-active">Active</span>
+            {{else}}
+              <span class="status-inactive">Inactive</span>
+            {{/if}}
+          </td>
+          <td>
+            <a href="/admin/dashboard/users/{{this.id}}/edit" class="btn">Edit</a>
+
+            <form action="/admin/dashboard/users/{{this.id}}/deactivate" method="POST" onsubmit="return confirm('Are you sure you want to {{#if this.status}}deactivate{{else}}reactivate{{/if}} this user?');">
+              <button type="submit" class="btn">
+                {{#if this.status}}Deactivate{{else}}Activate{{/if}}
+              </button>
+            </form>
           </td>
         </tr>
         {{/each}}
       </tbody>
     </table>
-  </main>
+  </div>
+</div>
 
-</body>
-</html>
+{{> footer}}
