@@ -100,3 +100,30 @@ exports.updateProduct = (req, res) => {
     }
   );
 };
+
+// Toggle Active/Inactive
+exports.toggleProductStatus = (req, res) => {
+  const productId = req.params.id;
+
+  // First fetch current status
+  db.query("SELECT status FROM products WHERE id = ?", [productId], (err, results) => {
+    if (err || results.length === 0) {
+      console.error("Error fetching product status:", err);
+      return res.status(500).send("Server error");
+    }
+
+    const currentStatus = results[0].status;
+    const newStatus = currentStatus ? 0 : 1;
+
+    // Update status
+    db.query("UPDATE products SET status = ? WHERE id = ?", [newStatus, productId], (err, result) => {
+      if (err) {
+        console.error("Error updating status:", err);
+        return res.status(500).send("Update failed");
+      }
+
+      res.redirect("/admin/dashboard/manage-products");
+    });
+  });
+};
+
