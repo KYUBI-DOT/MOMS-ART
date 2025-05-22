@@ -127,3 +127,79 @@ exports.toggleProductStatus = (req, res) => {
   });
 };
 
+
+// View All Users
+exports.viewUsers = (req, res) => {
+  db.query("SELECT id, name, email, city, state, country, status FROM users", (err, results) => {
+    if (err) {
+      console.error("Error fetching users:", err);
+      return res.status(500).send("Server Error");
+    }
+
+    res.render("admin-manageuser", {
+      users: results,
+      admin: req.session.admin
+    });
+  });
+};
+
+// Show Edit User Form
+exports.editUserForm = (req, res) => {
+  const userId = req.params.id;
+
+  db.query("SELECT * FROM users WHERE id = ?", [userId], (err, results) => {
+    if (err || results.length === 0) {
+      console.error("Error loading user:", err);
+      return res.status(404).send("User not found");
+    }
+
+    res.render("admin-edituser", {
+      user: results[0],
+      admin: req.session.admin
+    });
+  });
+};
+
+// Handle Edit User Submission
+exports.updateUser = (req, res) => {
+  const userId = req.params.id;
+  const { name, email, city, state, country } = req.body;
+
+  db.query(
+    "UPDATE users SET name = ?, email = ?, city = ?, state = ?, country = ? WHERE id = ?",
+    [name, email, city, state, country, userId],
+    (err, result) => {
+      if (err) {
+        console.error("Error updating user:", err);
+        return res.status(500).send("Update failed");
+      }
+
+      res.redirect("/admin/dashboard/manage-users");
+    }
+  );
+};
+
+// Toggle User Status
+exports.toggleUserStatus = (req, res) => {
+  const userId = req.params.id;
+
+  db.query("SELECT status FROM users WHERE id = ?", [userId], (err, results) => {
+    if (err || results.length === 0) {
+      console.error("Error fetching user:", err);
+      return res.status(500).send("Error fetching user");
+    }
+
+    const currentStatus = results[0].status;
+    const newStatus = currentStatus ? 0 : 1;
+
+    db.query("UPDATE users SET status = ? WHERE id = ?", [newStatus, userId], (err) => {
+      if (err) {
+        console.error("Error updating status:", err);
+        return res.status(500).send("Failed to update user status");
+      }
+
+      res.redirect("/admin/dashboard/manage-users");
+    });
+  });
+};
+
