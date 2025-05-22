@@ -100,6 +100,28 @@ exports.loginUser = (req, res) => {
             return res.render("login", { message: "Invalid email or password" });
         }
 
+
+        // View All Products
+exports.viewProducts = async (req, res) => {
+  try {
+    db.query("SELECT * FROM products", (err, results) => {
+      if (err) {
+        console.error("Error fetching products:", err);
+        return res.status(500).send("Server error");
+      }
+
+      res.render("admin-manageproduct", {
+        products: results,
+        admin: req.session.admin
+      });
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Internal server error");
+  }
+};
+
+
   // Store user in session
   req.session.user = {
     id: user.id,
