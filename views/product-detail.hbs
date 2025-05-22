@@ -174,7 +174,13 @@
         <option>XL</option>
       </select>
 
-      <form action="/cart/add/{{product.id}}" method="POST" class="product-form">
+      <!-- ✅ Fixed Add to Cart form -->
+      <form action="/add-to-cart" method="POST" class="product-form">
+        <input type="hidden" name="product_id" value="{{product.id}}">
+        <input type="hidden" name="product_name" value="{{product.name}}">
+        <input type="hidden" name="product_price" value="{{product.price}}">
+        <input type="hidden" name="image" value="{{product.image}}">
+
         <button type="submit" class="cart-link">
           <i class="fa-solid fa-cart-shopping cart"></i>
         </button>
@@ -210,9 +216,11 @@
 
   <div class="pro-container">
     {{#each products}}
-      <form class="pro" action="/cart/add/{{id}}" method="POST">
-        <input type="hidden" name="name" value="{{name}}" />
-        <input type="hidden" name="price" value="{{price}}" />
+      <!-- ✅ Fixed featured item form -->
+      <form class="pro" action="/add-to-cart" method="POST">
+        <input type="hidden" name="product_id" value="{{id}}" />
+        <input type="hidden" name="product_name" value="{{name}}" />
+        <input type="hidden" name="product_price" value="{{price}}" />
         <input type="hidden" name="image" value="{{image}}" />
 
         <a href="/product/{{id}}">
@@ -220,11 +228,9 @@
         </a>
         <div class="des">
           <h5><a href="/product/{{id}}">{{name}}</a></h5>
-          
           <span>{{category}}</span>
           <div class="star">
-            {{#each (range 1 5)}}
-            {{/each}}
+            {{#each (range 1 5)}}{{/each}}
           </div>
           <p>Nu {{price}}</p>
         </div>
@@ -236,6 +242,5 @@
     {{/each}}
   </div>
 </section>
-
 
 {{>footer}}
