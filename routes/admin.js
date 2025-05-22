@@ -51,6 +51,10 @@ router.get("/dashboard/products/:id/edit", isAdminLoggedIn, authController.editP
 // Handle Edit Submission
 router.post("/dashboard/products/:id/edit", isAdminLoggedIn, authController.updateProduct);
 
+// Toggle Product Activation
+router.post("/dashboard/products/:id/deactivate", isAdminLoggedIn, authController.toggleProductStatus);
+
+
 
 // Logout
 router.get('/logout', (req, res) => {
