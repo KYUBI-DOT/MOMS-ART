@@ -55,6 +55,17 @@ router.post("/dashboard/products/:id/edit", isAdminLoggedIn, authController.upda
 router.post("/dashboard/products/:id/deactivate", isAdminLoggedIn, authController.toggleProductStatus);
 
 
+// View Users
+router.get("/dashboard/manage-users", isAdminLoggedIn, authController.viewUsers);
+
+// Edit User
+router.get("/dashboard/users/:id/edit", isAdminLoggedIn, authController.editUserForm);
+router.post("/dashboard/users/:id/edit", isAdminLoggedIn, authController.updateUser);
+
+// Toggle User Status (Activate/Deactivate)
+router.post("/dashboard/users/:id/deactivate", isAdminLoggedIn, authController.toggleUserStatus);
+
+
 
 // Logout
 router.get('/logout', (req, res) => {
